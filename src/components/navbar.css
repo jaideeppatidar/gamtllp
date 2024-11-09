@@ -1,0 +1,26 @@
+.profile-modal {
+    position: fixed;
+    top: 60px; /* Adjusts vertical position from the top */
+    right: 100px; /* Positions the modal from the right side */
+    width: auto; 
+    background:white; /* Background color with transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensures it appears above other elements */
+}
+
+.modal-content {
+    background: white; /* Background color of the modal content */
+    padding: 20px; /* Padding inside the modal content */
+    border-radius: 5px; /* Rounds the corners of the modal */
+    position: relative; /* Positions the close button correctly */
+}
+
+.close {
+    position: absolute;
+    top: 10px; /* Adjusts vertical position for the close button */
+    right: 15px; /* Adjusts horizontal position for the close button */
+    cursor: pointer; 
+    font-size: 26px;
+}
