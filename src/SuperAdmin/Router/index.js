@@ -8,6 +8,8 @@ import DocumentPage from "../page/DocumentSuperAdmin/DocumentPage";
 import MeetingRecordPage from "../page/MeetingRecordPage/MeetingRecordPage";
 import AssetManagementPage from "../page/AssetManagementPage/AssetManagementPage";
 import AllEmployees from "../page/Employees/AllEmployee/AllEmployee";
+import BookingProduct from "../page/BookProdcutUser/BookProductUser";
+import BookingProductUser from '../page/BookProdcutUser/BookProductDetails'
 import Login from "../auth/login";
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -42,6 +44,10 @@ const SuperAdminRouting = () => {
         <Route path="documentPage" element={<DocumentPage />} />
         <Route path="expenses" element={<Expenses />} />
         <Route path="allEmployee" element={<AllEmployees />} />
+        <Route path="bookingdata" element={<BookingProduct />} />
+        <Route path="bookingdataUser/:userId" element={<BookingProductUser />} />
+
+
 
       </Route>
 

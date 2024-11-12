@@ -142,6 +142,24 @@ export const deleteUser = async (userId) => {
   }
 };
 
+// Get All Products 
+
+export const getAllProducts = async () => {
+    const response = await API.get(`/product`);
+    return response.data;
+  
+};
+
+//get all booking product user 
 
 
+export const getAllBookingProduct = async () => {
+  const response = await API.get(`/allbooking`);
+  return response.data;
 
+};
+export const getProductUserId = async (userId) => {
+  const response = await API.get(`/bookings/${userId}`);
+  return response.data;
+
+};

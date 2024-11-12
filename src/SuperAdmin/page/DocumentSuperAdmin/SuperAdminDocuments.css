@@ -94,7 +94,7 @@ td {
 }
 .AdminDocument-pagination-table-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
   background-color: #fdfbff;
   padding: 12px 1px;
