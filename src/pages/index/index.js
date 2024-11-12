@@ -91,11 +91,11 @@ export default function IndexThree() {
                 <div className="col-12">
                   <div className="title-heading text-start">
                     <h1 className="heading fw-bold text-white title-dark mb-3">
-                      10765 Hillshire Ave, <br /> Baton Rouge, LA 70810, USA
+                    Digital Farming <br /> Data-driven 
                     </h1>
                     <p className="para-desc text-white-50 title-dark mb-0">
-                      A great plateform to buy, sell and rent your properties
-                      without any agent or commisions.
+                    Digital farming can be defined as the use of technology by farmers to integrate financial and field-level records for complete farm activity management.
+
                     </p>
 
                     <div className="mt-4 pt-2">
@@ -123,11 +123,11 @@ export default function IndexThree() {
                 <div className="col-12">
                   <div className="title-heading text-start">
                     <h1 className="heading fw-bold text-white title-dark mb-3">
-                      10765 Hillshire Ave, <br /> Baton Rouge, LA 70810, USA
+                    Digital Farming <br /> Data-driven 
                     </h1>
                     <p className="para-desc text-white-50 title-dark mb-0">
-                      A great plateform to buy, sell and rent your properties
-                      without any agent or commisions.
+                    Digital farming can be defined as the use of technology by farmers to integrate financial and field-level records for complete farm activity management.
+
                     </p>
 
                     <div className="mt-4 pt-2">
@@ -155,11 +155,11 @@ export default function IndexThree() {
                 <div className="col-12">
                   <div className="title-heading text-start">
                     <h1 className="heading fw-bold text-white title-dark mb-3">
-                      10765 Hillshire Ave, <br /> Baton Rouge, LA 70810, USA
+                    Digital Farming <br /> Data-driven 
                     </h1>
                     <p className="para-desc text-white-50 title-dark mb-0">
-                      A great plateform to buy, sell and rent your properties
-                      without any agent or commisions.
+                    Digital farming can be defined as the use of technology by farmers to integrate financial and field-level records for complete farm activity management.
+
                     </p>
 
                     <div className="mt-4 pt-2">

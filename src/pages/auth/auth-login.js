@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { loginSuccess } from "../../Redux/authSlice/authSlice";
 import { setUser } from "../../Redux/authSlice/userSlice";
 import bg3 from "../../assect/images/1.png";
@@ -15,18 +14,15 @@ export default function AuthLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [isPopupVisible, setPopupVisible] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault(); 
         
         try {
-          const { token, user } = await loginUser(email, password); // Use the service
-          
-          // Dispatch actions to update Redux state
-          dispatch(loginSuccess({ token, user }));
+          const { token, user } = await loginUser(email, password); 
+                    dispatch(loginSuccess({ token, user }));
           dispatch(setUser(user));
               localStorage.setItem("authToken", token);
             

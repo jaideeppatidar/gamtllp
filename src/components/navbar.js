@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoDark from "../assect/images/logo.png";
@@ -16,10 +14,8 @@ export default function Navbar({ navClass, logolight, menuClass }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { email, firstName } = useSelector((state) => state.auth.user); 
-  console.log("Navbar user:", email, firstName);
-const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Access isAuthenticated directly
-
+  const { email, firstName } = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Access isAuthenticated directly
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -51,15 +47,40 @@ const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // A
           {logolight === true ? (
             <Link className="logo" to="/">
               <span className="logo-light-mode">
-                <img src={logoDark} className="l-dark" alt="" style={{height:'65px'}} />
-                <img src={logoLight} className="l-light" alt="" style={{height:'65px'}} />
+                <img
+                  src={logoDark}
+                  className="l-dark"
+                  alt=""
+                  style={{ height: "65px" }}
+                />
+                <img
+                  src={logoLight}
+                  className="l-light"
+                  alt=""
+                  style={{ height: "65px" }}
+                />
               </span>
-              <img src={logoLight} className="logo-dark-mode" alt="" style={{height:'65px'}} />
+              <img
+                src={logoLight}
+                className="logo-dark-mode"
+                alt=""
+                style={{ height: "65px" }}
+              />
             </Link>
           ) : (
             <Link className="logo" to="/">
-              <img src={logoDark} className="logo-light-mode" alt="" style={{height:'65px'}} />
-              <img src={logoLight} className="logo-dark-mode" alt="" style={{height:'65px'}} />
+              <img
+                src={logoDark}
+                className="logo-light-mode"
+                alt=""
+                style={{ height: "65px" }}
+              />
+              <img
+                src={logoLight}
+                className="logo-dark-mode"
+                alt=""
+                style={{ height: "65px" }}
+              />
             </Link>
           )}
           <div className="menu-extras">
@@ -80,27 +101,7 @@ const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // A
           <ul className="buy-button list-inline mb-0">
             <li className="list-inline-item ps-1 mb-0">
               <div className="dropdown">
-                <button
-                  type="button"
-                  className="dropdown-toggle btn btn-sm btn-icon btn-pills btn-primary"
-                  onClick={() => setModal(!modal)}
-                >
-                  <FiSearch className="icons" />
-                </button>
-                <div
-                  className={`${
-                    modal ? "show" : ""
-                  } dropdown-menu dd-menu dropdown-menu-start bg-white rounded-3 border-0 mt-3 p-0 right-0`}
-                  style={{ width: "240px", right: "0" }}
-                >
-                  <div className="search-bar">
-                    <input
-                      type="text"
-                      className="form-control rounded-3 border"
-                      placeholder="Search..."
-                    />
-                  </div>
-                </div>
+                <p className="text-whit">{firstName}</p>
               </div>
             </li>
             <li className="list-inline-item ps-1 mb-0">
@@ -125,14 +126,14 @@ const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // A
           {/* Profile Modal */}
           {profileModal && (
             <div className="profile-modal">
-              <div className="modal-content">
+              <div className="modal-contents">
                 <span className="close" onClick={handleProfileClick}>
                   &times;
                 </span>
                 <h4>User Profile</h4>
                 <p>Email: {email}</p>
-                <p>Name:  {firstName}</p>
-                <Link to="/profile" onClick={handleProfileClick}>
+                <p>Name: {firstName}</p>
+                <Link to="/userDashbaord" onClick={handleProfileClick}>
                   View Profile
                 </Link>
                 <hr />
@@ -145,25 +146,17 @@ const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // A
 
           <div id="navigation" style={{ display: isMenu ? "block" : "none" }}>
             <ul className={menuClass}>
-              <li >
-                <Link to="/" >Home</Link>
+              <li>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/aboutus">About Us</Link>
               </li>
               <li className="has-submenu parent-menu-item">
-                <Link to="#">Products</Link>
-                <ul className="submenu">
-                  <li>
-                    <Link to="/list-sidebar">Products</Link>
-                  </li>
-                  {/* <li>
-                    <Link to="/property-detail">Products Details</Link>
-                  </li> */}
-                </ul>
+                <Link to="/products">Products</Link>
               </li>
               <li>
-                <Link to="/buy">Buy</Link>
+                <Link to="/myproduct">MyProduct</Link>
               </li>
               <li>
                 <Link to="/business">Business</Link>

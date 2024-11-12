@@ -20,9 +20,23 @@ export const Business = () => {
           <div className="row mt-5 justify-content-center">
             <div className="col-12">
               <div className="title-heading text-center">
-                <p className="text-white-50 para-desc mx-auto mb-0">
-                  Buy Products
-                </p>
+              <div className=" d-flex justify-content-center gap-3">
+                  <div>
+                    <Link to="/">
+                      <p className="text-white-50 para-desc mx-auto mb-0">
+                        Home
+                      </p>
+                    </Link>
+                  </div>
+                  <span className="text-white">/</span>
+                  <div>
+                    <Link to="/">
+                      <p className="text-white para-desc mx-auto mb-0">
+                      Business
+                      </p>
+                    </Link>
+                  </div>
+                </div>
                 <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">
                   Find Your Business
                 </h5>

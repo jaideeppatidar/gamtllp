@@ -15,6 +15,7 @@ export default function ListSidebar() {
         try {
           const data = await fetchProductData();
           setProductData(data.meetings); 
+          console.log(data.meetings)
         } catch (error) {
           console.error("Error setting product data:", error);
         }
@@ -38,9 +39,23 @@ export default function ListSidebar() {
           <div className="row mt-5 justify-content-center">
             <div className="col-12">
               <div className="title-heading text-center">
-                <p className="text-white-50 para-desc mx-auto mb-0">
-                  GAMTLLP Prodcuts
-                </p>
+              <div className=" d-flex justify-content-center gap-3">
+                  <div>
+                    <Link to="/">
+                      <p className="text-white-50 para-desc mx-auto mb-0">
+                        Home
+                      </p>
+                    </Link>
+                  </div>
+                  <span className="text-white">/</span>
+                  <div>
+                    <Link to="/">
+                      <p className="text-white para-desc mx-auto mb-0">
+                      Products
+                      </p>
+                    </Link>
+                  </div>
+                </div>
                 <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">
                   Products
                 </h5>
@@ -108,7 +123,7 @@ export default function ListSidebar() {
 
                 <div className="card-body content p-4">
                   <Link
-                    to={`/property-detail/${item._id}`}
+                    to={`/product-details/${item.productId}`}
                     className="title fs-5 text-dark fw-medium"
                   >
                     {item.ProductName}

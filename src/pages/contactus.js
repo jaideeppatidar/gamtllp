@@ -76,7 +76,7 @@ export default function ContactUs() {
           <div className="position-middle-bottom">
             <nav aria-label="breadcrumb" className="d-block">
               <ul className="breadcrumb breadcrumb-muted mb-0 p-0">
-                <li className="breadcrumb-item"><Link to="/">Towntor</Link></li>
+                <li className="breadcrumb-item"><Link to="/">GAMTLLP</Link></li>
                 <li className="breadcrumb-item active" aria-current="page">Contact us</li>
               </ul>
             </nav>

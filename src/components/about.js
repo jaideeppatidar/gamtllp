@@ -7,7 +7,7 @@ export default function AboutUs(){
     const aboutData = [
         {
             icon: FiHome,
-            title: 'Evaluate Property',
+            title: 'Evaluate Products',
             desc: 'If the distribution of letters and words  is random, the reader will not be distracted from making.'
         },
         {

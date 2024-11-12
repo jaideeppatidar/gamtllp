@@ -12,7 +12,7 @@ export default function Footer(){
         
         <footer className="bg-footer">
             <div className="container">
-                <div className="row">
+                <div className="row text-center">
                     <div className="col-12">
                         <div className="footer-py-60 footer-border">
                             <div className="row">
@@ -56,10 +56,10 @@ export default function Footer(){
                                     </ul>
                                 </div>
             
-                                <div className="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                                <div className="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 ">
                                     <h5 className="footer-head">Contact Details</h5>
 
-                                    <div className="d-flex mt-4">
+                                    <div className="d-flex mt-4 justify-content-center">
                                         <FiMapPin className="fea icon-sm text-primary mt-1 me-3"/>
                                         <div className="">
                                             <p className="mb-2">C/54 Northwest Freeway, <br/> Suite 558, <br/> Houston, USA 485</p>
@@ -67,12 +67,12 @@ export default function Footer(){
                                         </div>
                                     </div>
         
-                                    <div className="d-flex mt-4">
+                                    <div className="d-flex mt-4 justify-content-center">
                                         <FiMail className="fea icon-sm text-primary mt-1 me-3"/>
                                         <Link to="mailto:contact@example.com" className="text-foot">contact@example.com</Link>
                                     </div>
                                     
-                                    <div className="d-flex mt-4">
+                                    <div className="d-flex mt-4 justify-content-center">
                                         <FiPhone className="fea icon-sm text-primary mt-1 me-3"/>
                                         <Link to="tel:+152534-468-854" className="text-foot">+91747-0513-604</Link>
                                     </div>

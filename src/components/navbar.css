@@ -10,7 +10,7 @@
     z-index: 1000; /* Ensures it appears above other elements */
 }
 
-.modal-content {
+.modal-contents {
     background: white; /* Background color of the modal content */
     padding: 20px; /* Padding inside the modal content */
     border-radius: 5px; /* Rounds the corners of the modal */
