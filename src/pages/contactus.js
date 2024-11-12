@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
 import bg4 from "../assect/images/4.png";
-import { FiPhone, FiHexagon, FiMapPin, FiMail } from "../assect/icons/vander";
 import Footer from "../components/footer";
 import { contactFrom } from "../pages/services/api";
 

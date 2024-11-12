@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../DocumentSuperAdmin/SuperAdminDocumentPopup.css";
+import "../ProductSection/product.css";
 import Checkbox from "@mui/material/Checkbox";
 import TablePagination from "@mui/material/TablePagination";
 import CommonHeader from "../../superadmincompo/CommonHeader/index";
@@ -93,8 +93,6 @@ const BookProduct = () => {
   const handleRefreshClick = () => {
     fetchTimesheets();
   };
-  const profileImage = "/assets/images/profile.jpg";
-
   return (
     <div>
       

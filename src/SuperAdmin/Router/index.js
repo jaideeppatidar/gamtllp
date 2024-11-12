@@ -3,8 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import SuperAdminLayout from "../components/SuperAdminLayout/SuperAdminLayout";
 import SuperAdminDashboard from "../page/SuperAdminDashboard/SuperAdminDashboard";
 import Expenses from "../page/SuperAdminExpenses/SuperAdminExpense";
-import SuperAdminDocuments from "../page/DocumentSuperAdmin/SuperAdminDocuments";
-import DocumentPage from "../page/DocumentSuperAdmin/DocumentPage";
+import SuperAdminDocuments from "../page/ProductSection/ProductAll";
+import DocumentPage from "../page/ProductSection/ProductAll";
 import MeetingRecordPage from "../page/MeetingRecordPage/MeetingRecordPage";
 import AssetManagementPage from "../page/AssetManagementPage/AssetManagementPage";
 import AllEmployees from "../page/Employees/AllEmployee/AllEmployee";
@@ -16,10 +16,7 @@ import { PrivateRoute } from "./PrivateRoute";
 const SuperAdminRouting = () => {
   return (
     <Routes>
-      {/* Login route should be outside the layout */}
       <Route path="login" element={<Login />} />
-
-      {/* Redirect root to dashboard if authenticated, otherwise to login */}
       <Route 
         path="" 
         element={
@@ -28,8 +25,6 @@ const SuperAdminRouting = () => {
           </PrivateRoute>
         } 
       />
-
-      {/* Protected routes within SuperAdminLayout */}
       <Route
         element={
           <PrivateRoute>

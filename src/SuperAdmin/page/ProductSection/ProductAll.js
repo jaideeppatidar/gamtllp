@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./SuperAdminDocuments.css";
+import "./ProductAll.css";
 import Checkbox from "@mui/material/Checkbox";
 import TablePagination from "@mui/material/TablePagination";
 import CommonHeader from "../../superadmincompo/CommonHeader/index";
-import SuperAdminDocumentPopup from "./SuperAdminDocumentPopup";
-import { getAllProducts } from "../../../pages/services/api";
+import ProductAdd from "./ProductAdd";
+import { getAllProducts, deleteProduct } from "../../../pages/services/api";
+import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
+import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 const ITEMS_PER_PAGE = 6;
-
 
 const AdminMyDocuments = () => {
   const [documentsData, setDocumentsData] = useState([]);
@@ -18,6 +19,8 @@ const AdminMyDocuments = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [documentToDelete, setDocumentToDelete] = useState(null);
 
   const fetchDocuments = async () => {
     setLoading(true);
@@ -28,9 +31,10 @@ const AdminMyDocuments = () => {
     } catch (error) {
       console.error("Error fetching documents:", error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchDocuments();
   }, []);
@@ -73,15 +77,20 @@ const AdminMyDocuments = () => {
     }
   };
 
-  const handleDelete = () => {
-    const newDocumentsData = documentsData.filter(
-      (document) => !selectedDocuments.includes(document._id)
-    );
-    setDocumentsData(newDocumentsData);
-    setSelectedDocuments([]);
-    setPage(0);
+  const handleDelete = async () => {
+    try {
+      await Promise.all(
+        selectedDocuments.map(async (id) => {
+          await deleteProduct(id);
+        })
+      );
+      fetchDocuments(); // Refresh list after deletion
+      setSelectedDocuments([]);
+      setPage(0);
+    } catch (error) {
+      console.error("Error deleting selected products:", error);
+    }
   };
-
 
   const handleAddClick = () => {
     setIsPopupOpen(true);
@@ -95,9 +104,34 @@ const AdminMyDocuments = () => {
     console.log("Form Submitted", data);
     setIsPopupOpen(false);
   };
+
   const handleRefreshClick = () => {
     fetchDocuments();
   }
+
+  const handleOpenConfirmationModal = (id) => {
+    setDocumentToDelete(id);
+    setShowConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setDocumentToDelete(null);
+    setShowConfirmationModal(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (documentToDelete) {
+      try {
+        await deleteProduct(documentToDelete); // Call the delete API
+        fetchDocuments(); // Refresh list after deletion
+        setShowConfirmationModal(false); // Close confirmation modal
+      } catch (error) {
+        console.error("Error deleting product:", error);
+      } finally {
+        setDocumentToDelete(null);
+      }
+    }
+  };
 
   return (
     <div>
@@ -119,8 +153,7 @@ const AdminMyDocuments = () => {
           handleRefreshClick={handleRefreshClick}
         />
         {loading ? (
-          // <LinearIndeterminate />
-          <p>Loading</p>
+          <p>Loading...</p>
         ) : (
           <div className="AdminDocument-tablebody">
             <table className="AdminDocument-table-data">
@@ -144,17 +177,13 @@ const AdminMyDocuments = () => {
                   <th>Income</th>
                   <th>Persantage</th>
                   <th>image</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {currentItems.map((document) => (
                   <tr key={document._id}>
-                    <td
-                      style={{
-                        padding: "5px",
-                        textAlign: "left",
-                      }}
-                    >
+                    <td style={{ padding: "5px", textAlign: "left" }}>
                       <Checkbox
                         checked={selectedDocuments.includes(document._id)}
                         onChange={() => handleSelectDocuments(document._id)}
@@ -163,15 +192,28 @@ const AdminMyDocuments = () => {
                     <td data-label="productId">{document.productId}</td>
                     <td data-label="ProductName">{document.ProductName}</td>
                     <td data-label="Income">{document.Income}</td>
-
                     <td data-label="Persantage">{document.Persantage}</td>
                     <td data-label="image">{document.image}</td>
+                    <td data-label="Action">
+                      <div className="AdminAction-DataButon">
+                        <button
+                          className="AdminText-delete"
+                          onClick={() =>
+                            handleOpenConfirmationModal(document.productId)
+                          }
+                        >
+                          <IconMapper
+                            iconName="Deletebtn"
+                            className="AdminDeletebtnView"
+                          />
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
             <div className="AdminDocument-pagination-table-container">
-              
               <TablePagination
                 rowsPerPageOptions={[ITEMS_PER_PAGE, 10, 25]}
                 component="div"
@@ -183,9 +225,16 @@ const AdminMyDocuments = () => {
               />
             </div>
           </div>
-        )}{" "}
+        )}
       </div>
-      <SuperAdminDocumentPopup
+      <ConfirmationModal
+          open={showConfirmationModal}
+          onClose={handleCloseConfirmationModal}
+          onConfirm={handleConfirmDelete}
+          title="Delete Product"
+          message="Are you sure you want to delete this Product?"
+        />
+        <ProductAdd
         open={isPopupOpen}
         onClose={handleClosePopup}
         onSubmit={handleFormSubmit}

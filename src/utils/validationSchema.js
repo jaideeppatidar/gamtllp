@@ -69,16 +69,15 @@ export const MeetingShedulValidation = Yup.object().shape({
     .required("Meeting URL is required")
 });
 export const AddDocumentValidation = Yup.object().shape({
-  employeeName: Yup.string().required("Document name is required"),
-  employeeId: Yup.string().required("Document name is required"),
-  documentType: Yup.string().required("Document name is required"),
-  uploadedDate: Yup.date().required("Upload date is required").nullable(),
-  uploadStatus: Yup.string().required("Uploaded status is required"),
-  documentUrl: Yup.mixed()
+  ProductName: Yup.string().required("ProductName name is required"),
+  Description: Yup.string().required("Description name is required"),
+  Income: Yup.date().required("Income is required").nullable(),
+  Persantage: Yup.string().required("Persantage is required"),
+  image: Yup.mixed()
     .required("A file is required")
     .test("fileType", "Only PDF, JPEG, and PNG files are allowed", (value) => {
       const validTypes = ["application/pdf", "image/jpeg", "image/png"];
       return value && validTypes.includes(value.type);
     }),
-    verifyStatus: Yup.string().required("Status is required"),
+  
 });

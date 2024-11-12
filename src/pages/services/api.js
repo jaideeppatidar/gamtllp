@@ -150,6 +150,31 @@ export const getAllProducts = async () => {
   
 };
 
+export const AddProduct = async (formData) => {
+  try {
+    const response = await API.post("/product", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  try {
+    const response = await API.delete(
+      `/product/${productId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    toast.error(error.response?.data?.message || "Error deleting user");
+    throw error;
+  }
+};
+
 //get all booking product user 
 
 

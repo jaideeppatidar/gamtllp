@@ -55,7 +55,7 @@ const Header = ({ isOpen, toggleSidebar }) => {
         </div>
         <div className="header-right">   
        <div className="super-name-container" onClick={togglePopup}>
-            <h4>Team </h4>
+            <strong>Team </strong>
             <div className="icon-container">
               <img src={ProfileImage} alt="GAMTLLP" className="headerprofile" />
             </div>

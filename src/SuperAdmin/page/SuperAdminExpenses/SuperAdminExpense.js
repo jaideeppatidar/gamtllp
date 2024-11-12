@@ -11,7 +11,6 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const profileImage = "/assets/images/profile.jpg";
 const ITEMS_PER_PAGE = 6;
 
 const AdminExpense = () => {

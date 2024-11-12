@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {  FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import SearchInput from "../SearchTextField/index";
 import IconMapper from "../IconMapper/IconMapper";
 import "./Commonheader.css";

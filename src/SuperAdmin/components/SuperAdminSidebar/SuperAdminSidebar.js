@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.css"
 import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
 import logo from "../../../assect/images/logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);

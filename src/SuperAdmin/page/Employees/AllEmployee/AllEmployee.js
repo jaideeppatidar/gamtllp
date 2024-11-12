@@ -18,12 +18,21 @@ const AllEmployee = () => {
   const [selectedDocuments, setSelectedDocuments] = useState([]);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [documentToDelete, setDocumentToDelete] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-      const data = await getAllUserInSuperadmin();
-      console.log(data);
-      setFilteredDocuments(data.users);
-  };
+    setLoading(true);
+    try {
+        const data = await getAllUserInSuperadmin();
+        console.log(data);
+        setFilteredDocuments(data.users);
+    } catch (error) {
+        console.error("Error fetching users:", error);
+    } finally {
+        setLoading(false); // Ensures loading is set to false after the fetch operation
+    }
+};
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -135,7 +144,9 @@ const AllEmployee = () => {
           handleRefreshClick={handleRefreshClick}
 
         />
-        
+         {loading ? (
+          <p>Loading...</p>
+        ) : (
           <div className="Admintablebody">
             <table className="Admintable-data">
               <thead>
@@ -159,7 +170,6 @@ const AllEmployee = () => {
                   <th>UserEmail</th>
                   <th>Mobile</th>
                   <th>Address</th>
-
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -200,7 +210,8 @@ const AllEmployee = () => {
               </tbody>
             </table>
           </div>
-      
+            
+            )}
         <div className="pagination-table-container">
          
           <div className="flex gap-3">
@@ -223,6 +234,7 @@ const AllEmployee = () => {
           title="Delete User"
           message="Are you sure you want to delete this User?"
         />
+       
       </div>
       <ToastContainer
       style={{

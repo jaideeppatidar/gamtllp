@@ -11,7 +11,6 @@ import { fetchMeettingRecod,deleteaDailog } from "../../ApiServices";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 // import LinearIndeterminate from "../../../components/Linearindeterminate/Linearindeterminate";
 
-const profileImage = "/assets/images/profile.jpg";
 
 const MeetingRecordPage = () => {
   const [currentPage, setCurrentPage] = useState(0);

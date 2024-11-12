@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import bg2 from "../assect/images/5.png";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiCamera, FiHeart, FiHome } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { deleteProductById, fetchBookingDataUserId } from "./services/api";

@@ -20,7 +20,6 @@ export default function BankDetails() {
               alt="Scanner"
               className="img-fluid"
               style={{
-                height: "auto",
                 width: "100%",
                 height:'70vh',
                 objectFit: "contain",

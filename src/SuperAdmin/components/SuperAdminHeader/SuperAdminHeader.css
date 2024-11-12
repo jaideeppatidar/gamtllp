@@ -3,10 +3,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: rgb(248, 249, 251);;
+    background-color: lavender;;
     width: auto;
     z-index: 2;
     position: relative;
+    border-bottom: 3px solid rgb(13, 107, 138)
   }
  
   

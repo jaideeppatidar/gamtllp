@@ -9,9 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AssetForm from "../../components/AssetForm/AssetForm";
 import { deleteAllassets, deleteassets, fetchAllAssets } from "../../ApiServices";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
-// import LinearIndeterminate from "../../../components/Linearindeterminate/Linearindeterminate";
 
-const profileImage = "/assets/images/profile.jpg";
 
 const AssetManagementPage = () => {
   const [currentPage, setCurrentPage] = useState(0);

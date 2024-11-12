@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { clientData } from "../data/data";
 import TinySlider from "tiny-slider-react";
 import '../../node_modules/tiny-slider/dist/tiny-slider.css';

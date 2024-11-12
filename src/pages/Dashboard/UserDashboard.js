@@ -109,9 +109,9 @@ const Dashboard = () => {
               </div>
               <div class="col-md-6 mb-3">
                 <div class="card p-3" style={{ height: "130px" }}>
-                  <h5 class="card-title">Motivations</h5>
+                  <h5 class="card-title">User Wallets</h5>
                   <p class="card-text text-muted">
-                    Ut enim ad minim veniam, quis nostrud exercitation.
+                  {`Total Balance: ${0}`}
                   </p>
                 </div>
               </div>

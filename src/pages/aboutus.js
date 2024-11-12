@@ -9,8 +9,7 @@ import map from "../assect/images/map.png";
 
 import Navbar from "../components/navbar";
 import About from "../components/about";
-import Broker from "../components/broker";
-import Blog from "../components/blog";
+
 import GetInTuch from "../components/getInTuch";
 
 import ModalVideo from "react-modal-video";

@@ -1,14 +1,9 @@
-
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginSuccess } from "../../Redux/authSlice/authSlice";
-import { setUser } from "../../Redux/authSlice/userSlice";
 import bg3 from "../../assect/images/1.png";
  import logo from "../../assect/images/logo.png";
 import { loginSuperAdmin } from "../../../src/pages/services/api";
 import './login.css'
-import { ROUTES } from "../Router/constants";
 
 
 export default function AuthLogin() {
