@@ -20,7 +20,7 @@ const Header = ({ isOpen, toggleSidebar }) => {
     }
   };
   const logout = () => {
-    navigate("/login");
+    navigate("/superadmin/login");
     localStorage.removeItem('SuperadminToken');
   };
   return (
@@ -73,7 +73,7 @@ const Header = ({ isOpen, toggleSidebar }) => {
                     <IconMapper iconName="settings" isFontAwesome={true} />{" "}
                     Settings
                   </NavLink>
-                  <NavLink to="/login" className="popup-link" onClick={logout}>
+                  <NavLink to="/superadmin/login" className="popup-link" onClick={logout}>
                     <IconMapper iconName="logout" isFontAwesome={true} /> Logout
                   </NavLink>
                 </ul>
