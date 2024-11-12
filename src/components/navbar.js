@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoDark from "../assect/images/logo.png";
 import logoLight from "../assect/images/logo.png";
-import {  FiUser } from "../assect/icons/vander";
+import { FiUser } from "../assect/icons/vander";
 import "./navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/authSlice/authSlice";
@@ -100,7 +100,16 @@ export default function Navbar({ navClass, logolight, menuClass }) {
           <ul className="buy-button list-inline mb-0">
             <li className="list-inline-item ps-1 mb-0">
               <div className="dropdown">
-                <p className="text-whit">{firstName}</p>
+                <div
+                  id="navigation"
+                  style={{ display: isMenu ? "block" : "none" }}
+                >
+                  <ul className={menuClass}>
+                    <li>
+                      <Link to="">{firstName}</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </li>
             <li className="list-inline-item ps-1 mb-0">

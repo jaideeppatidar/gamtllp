@@ -129,7 +129,10 @@ export default function ListSidebar() {
                     {item.ProductName}
                   </Link>
                   {item.Description && (
-                    <p className="mt-2">{item.Description}</p>
+                   <p className="mt-2 single-line">
+                   {item.Description.slice(0, 60)}
+                   {item.Description.length > 60 && '...'}
+                 </p>
                   )}
                   <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
                     <li className="list-inline-item mb-0">
