@@ -31,9 +31,7 @@ const BookProduct = () => {
     setLoading(true); 
     try {
       const data = await getAllBookingProduct();
-      console.log(data)
       const uniqueData = getUniqueTimesheets(data); 
-      console.log(uniqueData)
       setTimesheetData(uniqueData);
     } catch (error) {
       console.error("Failed to fetch timesheets:", error);

@@ -25,15 +25,22 @@ import Error from "./pages/Special/error";
 import { Business } from "./pages/Business";
 import PrivateRoute from "./pages/auth/PrivateRoute/PrivateRoute";
 import PublicRoute from "./pages/auth/PublicRoute/PublicRoute";
-import Payment from "./pages/payment";
+import Payment from "./pages/payment/payment";
 import MyProduct from "./pages/myproduct";
 import SuperAdminRouting from "./SuperAdmin/Router/index";
+import Withdrawal from './pages/payment/withdrawal'
+import TradingWithdrawal from './pages/payment/TradingWithdraw'
+
+import VerifyOTP from './pages/auth/auth_otpverification'
+import Blogs from "./pages/blogs";
+import BlogDetails from "./pages/blog-detail";
+
 function App() {
 
   return (
     <>
       <Routes>
-        
+      
         <Route path="/superadmin/*" element={<SuperAdminRouting />} />
         {/* Public Routes */}
         <Route path="/" element={<Index />} />
@@ -60,6 +67,7 @@ function App() {
             </PublicRoute>
           }
         />
+         <Route path="/verify-otp/:userId" element={<VerifyOTP />} />
         <Route
           path="/auth-reset-password"
           element={
@@ -106,6 +114,22 @@ function App() {
           element={
             <PrivateRoute>
               <Sell />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <PrivateRoute>
+              <Blogs />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/blog-detail/:id"
+          element={
+            <PrivateRoute>
+              <BlogDetails />
             </PrivateRoute>
           }
         />
@@ -165,6 +189,24 @@ function App() {
             </PrivateRoute>
           }
         />
+         <Route
+          path="/Withdrawal"
+          element={
+            <PrivateRoute>
+              <Withdrawal />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/tradingWithdrawal"
+          element={
+            <PrivateRoute>
+              <TradingWithdrawal/>
+            </PrivateRoute>
+          }
+        />
+       
+
         {/* Special Pages */}
         {/* <Route path="/comingsoon" element={<Comingsoon />} /> */}
         {/* <Route path="/maintenance" element={<Maintenance />} /> */}

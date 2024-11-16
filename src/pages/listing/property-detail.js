@@ -1,11 +1,12 @@
 
 import React, { useCallback, useEffect, useState } from "react";
-import {  useNavigate, useParams } from "react-router-dom";
+import {  Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import "../../../node_modules/react-18-image-lightbox/style.css";
+import { ProductBookingApi, fetchProductId } from "../services/api";
 
 const IMAGE_BASE_URL = "http://localhost:8080/";
 
@@ -19,9 +20,11 @@ export default function PropertyDetails() {
   const { userId, firstName } = useSelector((state) => state.auth.user);  
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/products/${productId}`);
-      const productData = response.data.meetings[0];
+      const response = await fetchProductId(productId);
+      const productData = response.meetings[0];
       setData(productData);
+      console.log(productData)
+
       setIncomeInput(productData.Income);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -62,8 +65,9 @@ export default function PropertyDetails() {
     console.log(bookingData)
     
     try {
-      await axios.post("http://localhost:8080/api/booking", bookingData);
-      navigate(`/buy/${data.productId}`, { state: bookingData });
+      await ProductBookingApi(bookingData);
+      fetchData(); 
+      navigate(`/buy/${data.productId}`);
     } catch (error) {
       console.error("Error creating booking:", error);
     }
@@ -123,9 +127,9 @@ export default function PropertyDetails() {
                       <span className="small">₹{yearlyIncome.toFixed(2)}</span>
                     </div>
                   </div>
-                  <button className="btn btn-primary w-100 mt-3" onClick={handleBookNow}>
+                  <Link to={`/buy/${data.productId}`} className="btn btn-primary w-100 mt-3" onClick={handleBookNow}>
                     Book Now
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

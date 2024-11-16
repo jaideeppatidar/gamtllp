@@ -7,6 +7,7 @@ import { setUser } from "../../Redux/authSlice/userSlice";
 import bg3 from "../../assect/images/1.png";
  import logo from "../../assect/images/logo.png";
 import { loginUser } from "../services/api";
+
 import './auth_login.css'
 
 
@@ -31,7 +32,6 @@ export default function AuthLogin() {
           
         } catch (error) {
           if (error.response && error.response.data) {
-            setErrorMessage(error.response.data.message);
           } else {
             setErrorMessage("Something went wrong. Please try again.");
           }

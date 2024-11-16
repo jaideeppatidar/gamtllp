@@ -250,17 +250,20 @@ export const blogData1 = [
     id: 1,
     image: property1,
     tag: "GAMTLLP",
-    title: "Digital Crop",
+    title: "Digital Trading",
     desc: "The most well-known dummy text is the 'Lorem Ipsum', in the 16th century.",
     date: "13th Sep 2023",
+    url:'/product-details'
   },
   {
     id: 2,
     image: property2,
     tag: "GAMTLLP",
-    title: "Digital Farming",
+    title: " Digital Organic Farming",
     desc: "The most well-known dummy text is the 'Lorem Ipsum', in the 16th century.",
     date: "29th Nov 2023",
+    url:'/product-details'
+
   },
   {
     id: 3,
@@ -269,6 +272,8 @@ export const blogData1 = [
     title: "⁠Silent Partnership",
     desc: "The most well-known dummy text is the 'Lorem Ipsum', in the 16th century.",
     date: "29th Dec 2023",
+    url:'/product-details'
+
   },
   
  

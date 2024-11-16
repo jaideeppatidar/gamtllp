@@ -67,12 +67,12 @@
   outline: none;
 }
 .Adminedit-button:hover {
-  background-color: #dae1f3;
+  /* background-color: #dae1f3; */
   color: lightblue;
   transform: scale(1.01);
 }
 .AdminText-delete:hover {
-  background-color: #dae1f3;
+  /* background-color: #dae1f3; */
   color: lightsalmon;
   transform: scale(1.01);
 }

@@ -132,6 +132,24 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   {isOpen && <span className="list-item-text">BookingProduct</span>}
                 </Link>
               </li>
+              <li
+                className={`list-item ${activeItem === "/superadmin/WithdrawalRequest" ? "active" : ""}`}
+                onClick={() => handleItemClick("/superadmin/WithdrawalRequest")}
+              >
+                <Link to="/superadmin/WithdrawalRequest" className="list-item">
+                  <IconMapper className="ImageIcons" iconName="MyDocuments" />
+                  {isOpen && <span className="list-item-text">Withdrawal</span>}
+                </Link>
+              </li>
+              <li
+                className={`list-item ${activeItem === "/superadmin/GetAllBusinessCategory" ? "active" : ""}`}
+                onClick={() => handleItemClick("/superadmin/GetAllBusinessCategory")}
+              >
+                <Link to="/superadmin/GetAllBusinessCategory" className="list-item">
+                  <IconMapper className="ImageIcons" iconName="MyDocuments" />
+                  {isOpen && <span className="list-item-text">AddCategoryBusniess</span>}
+                </Link>
+              </li>
              
               
               

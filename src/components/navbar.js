@@ -14,7 +14,7 @@ export default function Navbar({ navClass, logolight, menuClass }) {
   const dispatch = useDispatch();
 
   const { email, firstName } = useSelector((state) => state.auth.user);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Access isAuthenticated directly
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -104,11 +104,11 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                   id="navigation"
                   style={{ display: isMenu ? "block" : "none" }}
                 >
-                  <ul className={menuClass}>
+                  {/* <ul className={menuClass}> */}
                     <li>
                       <Link to="">{firstName}</Link>
                     </li>
-                  </ul>
+                  {/* </ul> */}
                 </div>
               </div>
             </li>
@@ -145,7 +145,7 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                   View Profile
                 </Link>
                 <hr />
-                <button onClick={handleLogout} className="btn btn-danger">
+                <button onClick={handleLogout} className="btn btn-primary">
                   Logout
                 </button>
               </div>

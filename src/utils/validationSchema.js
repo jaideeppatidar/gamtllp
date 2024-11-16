@@ -81,3 +81,15 @@ export const AddDocumentValidation = Yup.object().shape({
     }),
   
 });
+export const AddCategoryBusniess = Yup.object().shape({
+  categoryName: Yup.string().required("Category name is required"),
+  categoryDescription: Yup.string().required("Category description is required"),
+  categoryImage: Yup.mixed()
+    .required("A file is required")
+    .test("fileType", "Only image files are allowed", (value) => {
+      return value && ["image/jpeg", "image/png"].includes(value.type);
+    }),
+});
+export const otpValidationSchema = Yup.object().shape({
+  otp: Yup.string().length(6, 'OTP must be 6 digits').required('OTP is required'),
+});

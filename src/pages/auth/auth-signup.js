@@ -59,10 +59,9 @@ export default function Signup() {
       formDataToSend.append("aadharCard", formData.aadharCard);
     if (formData.panCard) formDataToSend.append("panCard", formData.panCard);
     try {
-      await registerUser(formDataToSend);
-      navigate("/auth-login");
-
-      toast.success("Signup successful!");
+     await registerUser(formDataToSend);
+      toast.success("Signup successful! Your account has been panding!");
+      navigate('/auth-login')
     } catch (error) {
       console.error(
         "Error during signup:",
@@ -92,7 +91,7 @@ export default function Signup() {
                       src={logo}
                       className="mb-4 d-block mx-auto"
                       alt="logo"
-                      style={{width:'70px'}}
+                      style={{ width: "70px" }}
                     />
                   </Link>
                   <h5 className="mb-3">Register your account</h5>
@@ -237,8 +236,15 @@ export default function Signup() {
                     </button>
                   </div>
                   <div className="col-12 text-center mt-3">
-                                    <span><span className="text-muted me-2">Don't have an account ?</span> <Link to="/auth-signup" className="text-dark fw-medium">Sign Up</Link></span>
-                                </div>
+                    <span>
+                      <span className="text-muted me-2">
+                        Already account here ?
+                      </span>{" "}
+                      <Link to="/auth-login" className="text-dark fw-medium">
+                        Sign in
+                      </Link>
+                    </span>
+                  </div>
                 </form>
               </div>
             </div>

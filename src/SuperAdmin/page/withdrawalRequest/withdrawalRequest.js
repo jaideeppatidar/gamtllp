@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./AllEmployee.css";
+import "./withdrawalRequest.css";
 import Checkbox from "@mui/material/Checkbox";
 import { TablePagination } from "@mui/material";
-import CommonHeader from "../../../superadmincompo/CommonHeader/index";
-import IconMapper from "../../../superadmincompo/IconMapper/IconMapper";
+import CommonHeader from "../../../SuperAdmin/superadmincompo/CommonHeader/index";
+import IconMapper from "../../../SuperAdmin/superadmincompo/IconMapper/IconMapper";
 import debounce from "lodash/debounce";
 import { ToastContainer, toast } from "react-toastify";
-import ConfirmationModal from "../../../superadmincompo/ConfirmationModal/ConfirmationModal";
+import ConfirmationModal from "../../../SuperAdmin/superadmincompo/ConfirmationModal/ConfirmationModal";
 import "react-toastify/dist/ReactToastify.css";
-import { getAllUserInSuperadmin,deleteUser, approveUser } from "../../../../pages/services/api";
-import { Link } from "react-router-dom";
+import { GetWithdrawal, deleteUser } from "../../../pages/services/api";
 
-const AllEmployee = () => {
+const WithdrawalRequest = () => {
   const [approvalStatus, setApprovalStatus] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -25,47 +24,48 @@ const AllEmployee = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const data = await getAllUserInSuperadmin();
-      console.log('Fetched data:', data);
-      // Assuming data.users is the array of user objects
-      const users = Array.isArray(data.users) ? data.users : [];
-      setFilteredDocuments(users);
-      
-      // Create approval status object from users array
-      const newApprovalStatus = {};
-      users.forEach(user => {
-        newApprovalStatus[user.userId] = user.isApproved;
-      });
-      setApprovalStatus(newApprovalStatus);
+      const data = await GetWithdrawal();
+      console.log("Fetched data:", data); // Check the structure here
+      setFilteredDocuments(data);
+      setApprovalStatus(
+        data.reduce((acc, user) => {
+          acc[user.userId] = user.isApproved;
+          return acc;
+        }, {})
+      );
     } catch (error) {
       console.error("Error fetching users:", error);
-      toast.error("Failed to fetch users");
     } finally {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
   }, []);
 
   useEffect(() => {
-    const debouncedSearch = debounce(() => {
-      setFilteredDocuments((prevDocuments) =>
-        prevDocuments.filter(
-          (doc) =>
-            (doc.firstName &&
-              doc.firstName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (doc.email &&
-              doc.email.toLowerCase().includes(searchTerm.toLowerCase()))
-        )
-      );
-    }, 300);
-    debouncedSearch();
-    return () => {
-      debouncedSearch.cancel();
-    };
+    if (searchTerm) {
+      const debouncedSearch = debounce(() => {
+        setFilteredDocuments(
+          filteredDocuments.filter((doc) =>
+            (doc.firstName && doc.firstName.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (doc.email && doc.email.toLowerCase().includes(searchTerm.toLowerCase()))
+          )
+        );
+      }, 300);
+  
+      debouncedSearch();
+      return () => {
+        debouncedSearch.cancel();
+      };
+    } else {
+      fetchData(); // If no search term, fetch all data again
+    }
   }, [searchTerm]);
+  
+
   const currentDocuments = filteredDocuments.slice(
     currentPage * itemsPerPage,
     currentPage * itemsPerPage + itemsPerPage
@@ -93,27 +93,22 @@ const AllEmployee = () => {
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
+
   const handleDelete = async (id) => {
     try {
-      await deleteUser(id); // Use 'id' instead of 'userId'
-      setFilteredDocuments(filteredDocuments.filter((doc) => doc.userId !== id)); // Use 'id' instead of 'userId'
+      await deleteUser(id);
       toast.success("Employee deleted successfully");
-      setTimeout(async () => {
-        await fetchData();
-      }, 3000);
+      fetchData(); // Refresh data immediately after deletion
     } catch (error) {
       toast.error("Failed to delete document");
     }
   };
-  
 
   const handleDeleteSelected = async () => {
     try {
       await deleteUser(selectedDocuments);
-      const newFilteredDocuments = filteredDocuments.filter(
-        (doc) => !selectedDocuments.includes(doc.id)
-      );
-      setFilteredDocuments(newFilteredDocuments);
+      toast.success("Selected documents deleted successfully");
+      fetchData(); // Refresh data immediately after bulk deletion
       setSelectedDocuments([]);
       setCurrentPage(0);
     } catch (error) {
@@ -121,26 +116,17 @@ const AllEmployee = () => {
       toast.error("Failed to delete selected documents");
     }
   };
-  const handleApprove = async (id) => {
-    try {
-      await approveUser(id);
-      setApprovalStatus(prev => ({
-        ...prev,
-        [id]: true
-      }));
-      
-      setFilteredDocuments(prev =>
-        prev.map(doc =>
-          doc.userId === id ? { ...doc, isApproved: true } : doc
-        )
-      );
-      toast.success("User approved successfully");
-    } catch (error) {
-      console.error("Error approving user:", error);
-      toast.error("Failed to approve user");
-    }
-  };
 
+  // const handleApprove = async (id) => {
+  //   try {
+  //     await approveUser(id);
+  //     toast.success("User approved successfully");
+  //     setApprovalStatus((prev) => ({ ...prev, [id]: true }));
+  //     fetchData(); // Refresh data immediately after approval
+  //   } catch (error) {
+  //     toast.error("Failed to approve user");
+  //   }
+  // };
 
   const handleOpenConfirmationModal = (id) => {
     setDocumentToDelete(id);
@@ -158,13 +144,13 @@ const AllEmployee = () => {
       handleCloseConfirmationModal();
     }
   };
-  const handleRefreshClick=()=>{
-    fetchData()
-  }
+
+  const handleRefreshClick = () => {
+    fetchData(); // Manual refresh if needed
+  };
 
   return (
     <div>
-   
       <div className="Admintable-container">
         <CommonHeader
           searchTerm={searchTerm}
@@ -174,9 +160,8 @@ const AllEmployee = () => {
           showIcons={{ plus: false, trash: true, rotate: true }}
           showSearchFilter={true}
           handleRefreshClick={handleRefreshClick}
-
         />
-         {loading ? (
+        {loading ? (
           <p>Loading...</p>
         ) : (
           <div className="Admintablebody">
@@ -196,14 +181,16 @@ const AllEmployee = () => {
                       onChange={handleSelectAll}
                     />
                   </th>
-               
                   <th>UserId</th>
+                  <th>Product Name</th>
                   <th>UserName</th>
-                  <th>UserEmail</th>
-                  <th>Mobile</th>
-                  <th>Address</th>
+                  <th>Branch Name</th>
+                  <th>Bank Name</th>
+                  <th>Account Number</th>
+                  <th>withdrawalMoney</th>
+                  <th>IFSC Code</th>
                   <th>Actions</th>
-                  <th>Approval Status</th>
+                  {/* <th>Approval Status</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -215,68 +202,55 @@ const AllEmployee = () => {
                         onChange={() => handleSelectDocument(doc.id)}
                       />
                     </td>
-                    <td data-label="userId">{doc.userId}</td>
+                    <td>{doc.userId}</td>
+                    <td>{doc.productName}</td>
 
-                    <td data-label="firstName">{doc.firstName}</td>
-                    <td data-label="email">{doc.email}</td>
-                    <td data-label="mobile">{doc.mobile}</td>
-                    <td data-label="mobile">{doc.address}</td>
+                    <td>{doc.name}</td>
+                    <td>{doc.branchName}</td>
+                    <td>{doc.bankName}</td>
+                    <td>{doc.accountNumber}</td>
+                    <td>{doc.withdrawalMoney}</td>
 
-
-                                       <td data-label="Action">
-                      <div className="AdminAction-DataButon">
-                        <button
-                          className="AdminText-delete"
-                          onClick={() =>
-                            handleOpenConfirmationModal(doc.userId)
-                          }
-                        >
-                          <IconMapper
-                            iconName="Deletebtn"
-                            className="AdminDeletebtnView"
-                          />
-                        </button>
-                        
-                      </div>
+                    <td>{doc.ifscCode}</td>
+                    <td>
+                      <button
+                        className="AdminText-delete"
+                        onClick={() => handleOpenConfirmationModal(doc.userId)}
+                      >
+                        <IconMapper
+                          iconName="Deletebtn"
+                          className="AdminDeletebtnView"
+                        />
+                      </button>
                     </td>
-                    <td data-label="Approval Status">
-                      <div className="d-flex gap-2 justify-content-center align-items-center">
+                    {/* <td>
                       {approvalStatus[doc.userId] ? "Approved" : "Pending"}
                       {!approvalStatus[doc.userId] && (
-                         
-                          <Link
+                        <Link
                           className="btn btn-primary"
-                            onClick={() => handleApprove(doc.userId)}
-                          >
-                           Approv
-                          </Link>
-                        
-                        )}
-                        </div>
-                    </td>
-
+                          onClick={() => handleApprove(doc.userId)}
+                        >
+                          Approve
+                        </Link>
+                      )}
+                    </td> */}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-            
-            )}
+        )}
         <div className="pagination-table-container">
-         
-          <div className="flex gap-3">
-            <TablePagination
-              component="div"
-              count={filteredDocuments.length}
-              page={currentPage}
-              onPageChange={handlePageChange}
-              rowsPerPage={itemsPerPage}
-              rowsPerPageOptions={[6, 10, 25]}
-              onRowsPerPageChange={handleItemsPerPageChange}
-            />
-          </div>
+          <TablePagination
+            component="div"
+            count={filteredDocuments.length}
+            page={currentPage}
+            onPageChange={handlePageChange}
+            rowsPerPage={itemsPerPage}
+            rowsPerPageOptions={[6, 10, 25]}
+            onRowsPerPageChange={handleItemsPerPageChange}
+          />
         </div>
-
         <ConfirmationModal
           open={showConfirmationModal}
           onClose={handleCloseConfirmationModal}
@@ -284,14 +258,10 @@ const AllEmployee = () => {
           title="Delete User"
           message="Are you sure you want to delete this User?"
         />
-       
       </div>
-      <ToastContainer
-      style={{
-        zIndex: 9999, // Set your desired z-index here
-      }} />
+      <ToastContainer style={{ zIndex: 9999 }} />
     </div>
   );
 };
 
-export default AllEmployee;
+export default WithdrawalRequest;

@@ -18,7 +18,7 @@ export default function Buy() {
     try {
       const response = await fetchBookingDataUserId(userId);
       console.log(response);
-      setSelectedProduct(Array.isArray(response) ? response : []);
+      setSelectedProduct(Array.isArray(response.bookings) ? response.bookings : []);
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
@@ -26,20 +26,14 @@ export default function Buy() {
   useEffect(() => {
     fetchProduct();
   }, [userId]);
-  const deleteProduct = async (productId) => {
+ const deleteProduct = async (productId) => {
     try {
-      // Delete the product from the backend
       await deleteProductById(productId);
-  
-      // Update local state immediately using the correct _id field
+      fetchProduct();
       setSelectedProduct((prevProducts) =>
-        prevProducts.filter((product) => product._id !== productId)
+        prevProducts.filter((product) => product.productId !== productId)
       );
-  
-      // Fetch updated data
-      await fetchProduct();
-      
-      toast.success("Product removed successfully");
+      toast.success("Product deleted successfully!");
     } catch (error) {
       console.error("Error deleting product:", error);
       toast.error("Failed to delete product");
@@ -153,7 +147,7 @@ export default function Buy() {
                     </ul>
                     <div className="d-flex justify-content-center gap-3 ">
                       <div className="d-flex justify-content-center mt-4">
-                        <button className="btn btn-primary">Checkout</button>
+                        <Link to="/bank-details" className="btn btn-primary">Checkout</Link>
                       </div>
                       <div className="d-flex justify-content-center mt-4">
                         <button
