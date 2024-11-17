@@ -14,6 +14,10 @@ import Login from "../auth/login";
 import { PrivateRoute } from "./PrivateRoute";
 import WithdrawalRequest from "../page/withdrawalRequest/withdrawalRequest";
 import GetAllBusinessCategory from '../page/AddCategoryBusniess/GetAllBusinessCategory'
+import GetallPaymet from '../page/PaymentDetails/GetallPaymet'
+import GetAllPaymentUser from '../page/PaymentDetails/getPaymentUser'
+
+
 const SuperAdminRouting = () => {
   return (
     <Routes>
@@ -43,6 +47,10 @@ const SuperAdminRouting = () => {
         <Route path="bookingdata" element={<BookingProduct />} />
         <Route path="bookingdataUser/:userId" element={<BookingProductUser />} />
         <Route path="GetAllBusinessCategory" element={<GetAllBusinessCategory />} />
+        <Route path="GetallPaymet" element={<GetallPaymet />} />
+        <Route path="GetallPaymet/:userId" element={<GetAllPaymentUser/>} />   
+
+
 
         <Route
           path="/WithdrawalRequest"

@@ -150,6 +150,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   {isOpen && <span className="list-item-text">AddCategoryBusniess</span>}
                 </Link>
               </li>
+              <li
+                className={`list-item ${activeItem === "/superadmin/GetallPaymet" ? "active" : ""}`}
+                onClick={() => handleItemClick("/superadmin/GetallPaymet")}
+              >
+                <Link to="/superadmin/GetallPaymet" className="list-item">
+                  <IconMapper className="ImageIcons" iconName="MyDocuments" />
+                  {isOpen && <span className="list-item-text">GetallPaymet</span>}
+                </Link>
+              </li>
              
               
               

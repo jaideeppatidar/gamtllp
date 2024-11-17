@@ -10,13 +10,14 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [purchasedProducts, setPurchasedProducts] = useState([]);
-  const { userId, firstName } = useSelector((state) => state.auth.user);
+  const { userId, firstName,referralLink } = useSelector((state) => state.auth.user);
+  
   useEffect(() => {
     const fetchPurchasedProducts = async () => {
       try {
         const response = await fetchBookingDataUserId(userId);
         console.log(response);
-        setPurchasedProducts(Array.isArray(response.bookings) ? response.bookings : [response]);
+        setPurchasedProducts(Array.isArray(response.bookings) ? response.bookings : [response] || []);
       } catch (error) {
         console.error("Error fetching purchased products:", error);
       }
@@ -92,14 +93,13 @@ const Dashboard = () => {
   <div className="flex items-center bg-gray-700 p-2 rounded-lg">
     <input
       type="text"
-      value="https://example.com/referral?code=12345"
+      value={referralLink}
       readOnly
       className="bg-transparent text-white flex-grow outline-none"
     />
     <button
       onClick={() => {
-        navigator.clipboard.writeText("https://example.com/referral?code=12345");
-        alert("Referral link copied!");
+        navigator.clipboard.writeText(referralLink);
       }}
       className="btn btn-primary"
     >

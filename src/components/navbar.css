@@ -15,6 +15,7 @@
     padding: 20px; /* Padding inside the modal content */
     border-radius: 5px; /* Rounds the corners of the modal */
     position: relative; /* Positions the close button correctly */
+    width: 250px;
 }
 
 .close {

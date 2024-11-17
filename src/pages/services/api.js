@@ -278,3 +278,29 @@ export const GetWithdrawal = async () => {
   const response = await API.get(`/withdrawalRequests`);
   return response.data.data;
 };
+
+// payment request send 
+export const AddPaymentDetails = async (formData) => {
+  try {
+    const response = await API.post("/payment-details", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const GetallPaymets = async () => {
+  const response = await API.get(`/getAllPaymentDetails`);
+  return response.data;
+};
+
+
+export const getPaymentUserId = async (userId) => {
+  const response = await API.get(`/payments/${userId}`);
+  console.log("API response:", response.data.PaymentDetails);
+  return response.data.PaymentDetails;
+};

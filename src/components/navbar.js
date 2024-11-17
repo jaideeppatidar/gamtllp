@@ -26,7 +26,6 @@ export default function Navbar({ navClass, logolight, menuClass }) {
   }, []);
 
   const toggleMenu = () => setIsMenu(!isMenu);
-
   const handleProfileClick = () => {
     setProfileModal(!profileModal);
     console.log("Profile modal state:", !profileModal);
@@ -138,11 +137,15 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                 <span className="close" onClick={handleProfileClick}>
                   &times;
                 </span>
-                <h4>User Profile</h4>
-                <p>Email: {email}</p>
-                <p>Name: {firstName}</p>
+                {/* <h4>User Profile</h4> */}
+                <p className="m-0" >Email: {email}</p>
+                <p className="m-0" >Name: {firstName}</p>
                 <Link to="/userDashbaord" onClick={handleProfileClick}>
                   View Profile
+                </Link>
+                <hr />
+                <Link to="/bank-details" onClick={handleProfileClick}>
+                 Payment Details
                 </Link>
                 <hr />
                 <button onClick={handleLogout} className="btn btn-primary">
