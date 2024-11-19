@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Index from "./pages/index";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./assect/scss/style.scss";
@@ -38,14 +38,20 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 
 function App() {
+  const location = useLocation();
+
+  // Check if the current route starts with /superadmin
+  const isSuperAdminRoute = location.pathname.startsWith("/superadmin");
 
   return (
     <>
-       <Navbar
-        navClass="defaultscroll sticky"
-        logolight={true}
-        menuClass="navigation-menu nav-left nav-light"
-      />
+      {!isSuperAdminRoute && (
+        <Navbar
+          navClass="defaultscroll sticky"
+          logolight={true}
+          menuClass="navigation-menu nav-left nav-light"
+        />
+      )}
       <Routes>
     
         <Route path="/superadmin/*" element={<SuperAdminRouting />} />

@@ -43,7 +43,7 @@ const PaymentDetailsAll = () => {
 
   useEffect(() => {
     const filteredData = paymentData.filter((payment) => {
-      const matchesSearch = payment.fullName
+      const matchesSearch = payment.firstName
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
       const matchesStatus = statusFilter
@@ -152,7 +152,7 @@ const PaymentDetailsAll = () => {
                     </td>
                     <td  data-label="Emp_Name">
                      
-                        {payment.fullName}
+                        {payment.firstName}
                      
                     </td>
                   </tr>
