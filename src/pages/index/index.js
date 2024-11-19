@@ -8,19 +8,14 @@ import bg3 from "../../assect/images/1.png";
 import bg7 from "../../assect/images/2.png";
 import bg8 from "../../assect/images/3.png";
 import bg9 from "../../assect/images/4.png";
-
-import Navbar from "../../components/navbar";
 import AboutUs from "../../components/about";
-
 import GetInTuch from "../../components/getInTuch";
 import FooterTopImage from "../../components/FoterTopImage";
-
 import CountUp from "react-countup";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ModalVideo from "react-modal-video";
 import "../../../node_modules/react-modal-video/css/modal-video.css";
-import Footer from "../../components/footer";
 
 export default function IndexThree() {
   const [isOpen, setOpen] = useState(false);

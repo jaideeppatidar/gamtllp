@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import bg2 from "../assect/images/5.png";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+
 import { Link } from "react-router-dom";
 import { FiCamera, FiHeart, FiHome } from "react-icons/fi";
 import { useSelector } from "react-redux";
@@ -74,7 +73,7 @@ export default function Buy() {
                       src={`${IMAGE_BASE_URL}${product.image}`}
                       className="img-fluid"
                       alt={product.title}
-                      style={{ height: "356px", width: "356px" }}
+                      style={{ height: "250px", width: "356px" }}
                     />
                     <ul className="list-unstyled property-icon">
                       <li>
@@ -123,20 +122,12 @@ export default function Buy() {
                     </ul>
                     <ul className="list-unstyled mt-3">
                       <li className="list-inline-item mb-0">
-                        <span className="text-muted">90Day Income</span>
-                        <p className="fw-medium mb-0">
-                          {product.ninetyDayIncome}
-                        </p>
-                      </li>
-                      <li className="list-inline-item mb-0">
-                        <span className="text-muted">365Day Income</span>
-                        <p className="fw-medium mb-0">
-                          {product.threeSixtyFiveDayIncome}
-                        </p>
-                      </li>
-                      <li className="list-inline-item mb-0">
-                        <span className="text-muted">Total Income</span>
+                        <span className="text-muted">Total Month</span>
                         <p className="fw-medium mb-0">{product.totalIncome}</p>
+                      </li>
+                      <li className="list-inline-item mb-0">
+                        <span className="text-muted">Total Month</span>
+                        <p className="fw-medium mb-0">{product.Months} Month</p>
                       </li>
                     </ul>
                     <div className="d-flex justify-content-center gap-3 ">

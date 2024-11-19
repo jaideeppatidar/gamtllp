@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Checkbox from "@mui/material/Checkbox";
 import TablePagination from "@mui/material/TablePagination";
 import CommonHeader from "../../superadmincompo/CommonHeader/index";

@@ -1,29 +1,23 @@
-
 import React, { useCallback, useEffect, useState } from "react";
-import {  Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
 import "../../../node_modules/react-18-image-lightbox/style.css";
 import { ProductBookingApi, fetchProductId } from "../services/api";
 
-const IMAGE_BASE_URL = "http://13.60.219.5:8080/";
-
+const IMAGE_BASE_URL = "http://localhost:6060/";
 export default function PropertyDetails() {
   const [data, setData] = useState({});
   const [incomeInput, setIncomeInput] = useState("");
   const params = useParams();
   const productId = params.productId;
   const navigate = useNavigate();
-  
-  const { userId, firstName } = useSelector((state) => state.auth.user);  
+
+  const { userId, firstName } = useSelector((state) => state.auth.user);
   const fetchData = useCallback(async () => {
     try {
       const response = await fetchProductId(productId);
       const productData = response.meetings[0];
       setData(productData);
-      console.log(productData)
 
       setIncomeInput(productData.Income);
     } catch (error) {
@@ -38,40 +32,36 @@ export default function PropertyDetails() {
   const calculateIncome = () => {
     const Income = Number(incomeInput) || 0;
     const percentage = Number(data?.Persantage?.replace("%", "") || 0) / 100;
-    const dailyIncome = Income * percentage;
-    const monthlyIncome = dailyIncome * 30;
-    const quarterlyIncome = dailyIncome * 90;
-    const yearlyIncome = dailyIncome * 365;
-    return { dailyIncome, monthlyIncome, quarterlyIncome, yearlyIncome };
+    const dailyIncome = Income * percentage; 
+    const totalIncome = dailyIncome * data?.Months * 30; 
+    return { dailyIncome, totalIncome };
   };
-
-  const { dailyIncome, monthlyIncome, quarterlyIncome, yearlyIncome } = calculateIncome();
+  const { dailyIncome, totalIncome } = calculateIncome();
 
   const handleBookNow = async () => {
     const bookingData = {
       productId: data.productId,
       title: data.ProductName,
-      description: data.Description,
       image: data.image,
       income: incomeInput,
-      dailyIncome: dailyIncome.toFixed(2),
-      ninetyDayIncome: quarterlyIncome.toFixed(2),
-      threeSixtyFiveDayIncome: yearlyIncome.toFixed(2),
-      totalIncome: monthlyIncome.toFixed(2),
+      dailyIncome: (dailyIncome || 0).toFixed(2),
       Persantage: data.Persantage,
+      totalIncome: (totalIncome || 0).toFixed(2),
+      Months:data.Months ,
       userId,
       firstName,
     };
-    console.log(bookingData)
-    
+    console.log(bookingData);
+  
     try {
       await ProductBookingApi(bookingData);
-      fetchData(); 
+      fetchData();
       navigate(`/buy/${data.productId}`);
     } catch (error) {
       console.error("Error creating booking:", error);
     }
   };
+  
 
   return (
     <>
@@ -94,7 +84,9 @@ export default function PropertyDetails() {
                 <div className="rounded-3 shadow bg-white sticky-bar p-4">
                   <h5 className="mb-3">Income Details:</h5>
                   <div className="mb-3">
-                    <label htmlFor="incomeInput" className="form-label">Investment</label>
+                    <label htmlFor="incomeInput" className="form-label">
+                      Investment
+                    </label>
                     <input
                       type="number"
                       id="incomeInput"
@@ -114,19 +106,17 @@ export default function PropertyDetails() {
                       <span className="small">₹{dailyIncome.toFixed(2)}</span>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mt-2">
-                      <span className="small text-muted">30 Days Income</span>
-                      <span className="small">₹{monthlyIncome.toFixed(2)}</span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between mt-2">
-                      <span className="small text-muted">90 Days Income</span>
-                      <span className="small">₹{quarterlyIncome.toFixed(2)}</span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between mt-2">
-                      <span className="small text-muted">365 Days Income</span>
-                      <span className="small">₹{yearlyIncome.toFixed(2)}</span>
+                      <span className="small text-muted">
+                        Total Income ({data.Months}Months)
+                      </span>
+                      <span className="small">₹{totalIncome.toFixed(2)}</span>
                     </div>
                   </div>
-                  <Link to={`/buy/${data.productId}`} className="btn btn-primary w-100 mt-3" onClick={handleBookNow}>
+                  <Link
+                    to={`/buy/${data.productId}`}
+                    className="btn btn-primary w-100 mt-3"
+                    onClick={handleBookNow}
+                  >
                     Book Now
                   </Link>
                 </div>
@@ -135,7 +125,6 @@ export default function PropertyDetails() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

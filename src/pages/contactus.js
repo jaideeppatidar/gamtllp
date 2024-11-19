@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/navbar";
 import bg4 from "../assect/images/4.png";
-import Footer from "../components/footer";
 import { contactFrom } from "../pages/services/api";
 
 export default function ContactUs() {

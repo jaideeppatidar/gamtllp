@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bg3 from "../../assect/images/bg/03.jpg";
-import Navbar from "../../components/navbar";
 import { FiHome, FiHeart, FiCamera } from "../../assect/icons/vander";
-import Footer from "../../components/footer";
 import { fetchProductData } from "../services/api";
 
-const IMAGE_BASE_URL = "http://localhost:8080/";
+const IMAGE_BASE_URL = "http://localhost:6060/";
 export default function ListSidebar() {
     const [productData, setProductData] = useState([]);
 
@@ -15,7 +13,6 @@ export default function ListSidebar() {
         try {
           const data = await fetchProductData();
           setProductData(data.meetings); 
-          console.log(data.meetings)
         } catch (error) {
           console.error("Error setting product data:", error);
         }
@@ -134,7 +131,11 @@ export default function ListSidebar() {
                       <span className="text-muted">Price</span>
                       <p className="fw-medium mb-0">{item.Income}</p>
                     </li>
-                    <li className="list-inline-item mb-0 text-muted">
+                    <li className="list-inline-item mb-0">
+                      <span className="text-muted">Monthly Plan</span>
+                      <p className="fw-medium mb-0">{item.Months} Month</p>
+                    </li>
+                    {/* <li className="list-inline-item mb-0 text-muted">
                       <span className="text-muted">Rating</span>
                       <ul className="fw-medium text-warning list-unstyled mb-0">
                         <li className="list-inline-item mb-0">
@@ -156,7 +157,7 @@ export default function ListSidebar() {
                           5.0(30)
                         </li>
                       </ul>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>

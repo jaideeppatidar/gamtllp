@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../components/footer";
-import Navbar from "../../components/navbar";
 import bg3 from "../../assect/images/2.png";
 import Profile from "../../assect/images/gamtllp.png";
 
@@ -16,7 +14,6 @@ const Dashboard = () => {
     const fetchPurchasedProducts = async () => {
       try {
         const response = await fetchBookingDataUserId(userId);
-        console.log(response);
         setPurchasedProducts(Array.isArray(response.bookings) ? response.bookings : [response] || []);
       } catch (error) {
         console.error("Error fetching purchased products:", error);
@@ -169,7 +166,9 @@ const Dashboard = () => {
             <th>Title</th>
             <th>Percentage</th>
             <th>Invest Income</th>
-            <th>365 Day Income</th>
+            <th>Total Income</th>
+            <th>Plan</th>
+
             <th>Booking Date</th>
             <th>Payment</th>
           </tr>
@@ -187,7 +186,8 @@ const Dashboard = () => {
               <td>{product.title}</td>
               <td>{product.Persantage}</td>
               <td>{product.income}</td>
-              <td>{product.threeSixtyFiveDayIncome}</td>
+              <td>{product.totalIncome}</td>
+              <td>{product.Months} Month </td>
               <td>{new Date(product.bookingDate).toLocaleDateString()}</td>
               <td
                 className={

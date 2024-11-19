@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import bg3 from "../../assect/images/3.png";
 import { Link } from "react-router-dom";
-import Footer from "../../components/footer";
 import { Withdrawal, fetchBookingDataUserId } from "../services/api";
 import { useSelector } from "react-redux";
 import { toast ,ToastContainer} from "react-toastify";

@@ -28,7 +28,6 @@ export default function Navbar({ navClass, logolight, menuClass }) {
   const toggleMenu = () => setIsMenu(!isMenu);
   const handleProfileClick = () => {
     setProfileModal(!profileModal);
-    console.log("Profile modal state:", !profileModal);
   };
   const handleLogout = () => {
     dispatch(logout());

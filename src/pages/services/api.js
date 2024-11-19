@@ -145,7 +145,6 @@ export const fetchProductId = async (productId) => {
     const response = await axios.get(
       `${API_BASE_URL}/api/products/${productId}`
     );
-    console.log(response.data);
     return response.data; // Return the product data from the API
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -269,7 +268,6 @@ export const getAllBookingProduct = async () => {
 };
 export const getProductUserId = async (userId) => {
   const response = await API.get(`/bookings/${userId}`);
-  console.log("API response:", response);
   return response.data;
 };
 
@@ -301,6 +299,5 @@ export const GetallPaymets = async () => {
 
 export const getPaymentUserId = async (userId) => {
   const response = await API.get(`/payments/${userId}`);
-  console.log("API response:", response.data.PaymentDetails);
   return response.data.PaymentDetails;
 };

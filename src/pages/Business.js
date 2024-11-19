@@ -5,13 +5,6 @@ import property2 from "../assect/images/digital_far.png";
 import property3 from "../assect/images/property/3.jpg";
 import { Link } from "react-router-dom";
 export const Business = () => {
-  function openPDF() {
-    // Option 1: Open in new window
-    window.open("path/to/your/document.pdf", "_blank");
-
-    // Option 2: Embed in current page
-    // document.getElementById('pdfViewer').src = 'path/to/your/document.pdf';
-  }
   return (
     <>
       <section
