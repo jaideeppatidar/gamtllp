@@ -125,10 +125,14 @@ export default function AboutUs() {
                 </p>
 
                 <div className="mt-4">
-                  <Link to="/aboutus" className="btn btn-pills btn-primary">
+                <a
+                    href="/docs/ UdyamRegistration.pdf"
+                    target="_blank"
+                    className="text-dark read-more"
+                  >
                     Read More{" "}
-                    <i className="mdi mdi-arrow-right align-middle"></i>
-                  </Link>
+                    <i className="mdi mdi-chevron-right align-middle"></i>
+                  </a>
                 </div>
               </div>
             </div>

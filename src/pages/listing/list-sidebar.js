@@ -80,7 +80,7 @@ export default function ListSidebar() {
                     className="img-fluid"
                     style={{
                       width: "100%",
-                      height: "250px", // Fixed height
+                      height: "270px", // Fixed height
                       objectFit: "cover", // Ensures the image covers the container
                       borderRadius: "8px", // Optional: rounded corners
                     }}
@@ -164,14 +164,14 @@ export default function ListSidebar() {
             </div>
           ))}
 
-          {/* <div className="col-12 mt-4 pt-2">
+          <div className="col-12 mt-5 pt-2 mb-5">
             <div className="text-center">
-              <Link to="/grid" className="mt-3 fs-6 text-primary">
+              <Link to="/" className="mt-3 fs-6 text-primary">
                 View More Products{" "}
                 <i className="mdi mdi-arrow-right align-middle"></i>
               </Link>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
 

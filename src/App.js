@@ -98,6 +98,15 @@ function App() {
             </PrivateRoute>
           }
         />
+         <Route
+          path="/buy"
+          element={
+            <PrivateRoute>
+              <Buy />
+            </PrivateRoute>
+          }
+        />
+        
         <Route
           path="/bank-details"
           element={

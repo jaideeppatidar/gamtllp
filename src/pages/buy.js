@@ -7,16 +7,14 @@ import { useSelector } from "react-redux";
 import { deleteProductById, fetchBookingDataUserId } from "./services/api";
 import { toast } from "react-toastify";
 
-const IMAGE_BASE_URL = "http://localhost:8080/";
+const IMAGE_BASE_URL = "http://localhost:6060/";
 
 export default function Buy() {
   const [selectedProduct, setSelectedProduct] = useState([]);
-  console.log(selectedProduct);
   const { userId } = useSelector((state) => state.auth.user);
   const fetchProduct = async () => {
     try {
       const response = await fetchBookingDataUserId(userId);
-      console.log(response);
       setSelectedProduct(Array.isArray(response.bookings) ? response.bookings : []);
     } catch (error) {
       console.error("Error fetching product data:", error);
@@ -55,7 +53,7 @@ export default function Buy() {
                   Buy Products
                 </p>
                 <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">
-                  Find Your Products
+                  Buy Your Products
                 </h5>
               </div>
             </div>
@@ -73,7 +71,7 @@ export default function Buy() {
                       src={`${IMAGE_BASE_URL}${product.image}`}
                       className="img-fluid"
                       alt={product.title}
-                      style={{ height: "250px", width: "356px" }}
+                      style={{ height: "270px", width: "356px" }}
                     />
                     <ul className="list-unstyled property-icon">
                       <li>

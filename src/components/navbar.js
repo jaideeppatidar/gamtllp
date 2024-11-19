@@ -103,9 +103,9 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                   style={{ display: isMenu ? "block" : "none" }}
                 >
                   {/* <ul className={menuClass}> */}
-                    <li>
-                      <Link to="">{firstName}</Link>
-                    </li>
+                  <li>
+                    <Link to="">{firstName}</Link>
+                  </li>
                   {/* </ul> */}
                 </div>
               </div>
@@ -137,14 +137,14 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                   &times;
                 </span>
                 {/* <h4>User Profile</h4> */}
-                <p className="m-0" >Email: {email}</p>
-                <p className="m-0" >Name: {firstName}</p>
+                <p className="m-0">Email: {email}</p>
+                <p className="m-0">Name: {firstName}</p>
                 <Link to="/userDashbaord" onClick={handleProfileClick}>
                   View Profile
                 </Link>
                 <hr />
                 <Link to="/bank-details" onClick={handleProfileClick}>
-                 Payment Details
+                  Payment Details
                 </Link>
                 <hr />
                 <button onClick={handleLogout} className="btn btn-primary">
@@ -163,10 +163,22 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                 <Link to="/aboutus">About Us</Link>
               </li>
               <li className="has-submenu parent-menu-item">
-                <Link to="/products">Products</Link>
-              </li>
-              <li>
-                <Link to="/myproduct">MyProduct</Link>
+                <Link to="/products"> Products </Link>
+                <span className="submenu-arrow"></span>
+                <ul className="submenu">
+                  <li>
+                    <Link to="/myproduct" className="sub-menu-item">
+                      {" "}
+                      My Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/buy" className="sub-menu-item">
+                      {" "}
+                      Buy Products
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/business">Business</Link>

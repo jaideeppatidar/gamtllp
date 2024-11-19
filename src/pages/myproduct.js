@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { fetchBookingDataUserId } from "./services/api"; // No need to import delete API
 import { toast } from "react-toastify";
 
-const IMAGE_BASE_URL = "http://13.60.219.5:8080/";
+const IMAGE_BASE_URL = "http://localhost:6060/";
 
 const MyProduct = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
@@ -94,7 +94,7 @@ const MyProduct = () => {
                           src={`${IMAGE_BASE_URL}${product.image}`}
                           className="img-fluid"
                           alt={product.title}
-                          style={{ height: "356px", width: "356px" }}
+                          style={{ height: "270px", width: "356px" }}
                         />
                         <ul className="list-unstyled property-icon">
                           <li>
@@ -144,19 +144,13 @@ const MyProduct = () => {
 
                         <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
                           <li className="list-inline-item mb-0">
-                            <span className="text-muted">3Month In</span>
-                            <p className="fw-medium mb-0">{product.ninetyDayIncome}</p>
-                          </li>
-                          <li className="list-inline-item mb-0">
-                            <span className="text-muted">1year Income</span>
-                            <p className="fw-medium mb-0">
-                              {product.threeSixtyFiveDayIncome}
-                            </p>
-                          </li>
-                          <li className="list-inline-item mb-0">
-                            <span className="text-muted">Monthly</span>
+                            <span className="text-muted">Total Monthly</span>
                             <p className="fw-medium mb-0">{product.totalIncome}</p>
                           </li>
+                          <li className="list-inline-item mb-0">
+                        <span className="text-muted">Total Month Plan</span>
+                        <p className="fw-medium mb-0">{product.Months} Month</p>
+                      </li>
                         </ul>
                         <div className="d-flex justify-content-center gap-3">
                           <div className="d-flex justify-content-center mt-4">
