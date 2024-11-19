@@ -6,7 +6,7 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "http://13.60.219.5:8080";
 
 console.log("API URL: ", process.env.REACT_APP_API_URL);
 
