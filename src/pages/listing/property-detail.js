@@ -8,7 +8,7 @@ import Footer from "../../components/footer";
 import "../../../node_modules/react-18-image-lightbox/style.css";
 import { ProductBookingApi, fetchProductId } from "../services/api";
 
-const IMAGE_BASE_URL = "http://localhost:8080/";
+const IMAGE_BASE_URL = "http://13.60.219.5:8080/";
 
 export default function PropertyDetails() {
   const [data, setData] = useState({});
@@ -75,7 +75,6 @@ export default function PropertyDetails() {
 
   return (
     <>
-      <Navbar navClass="defaultscroll sticky" menuClass="navigation-menu nav-left" />
       <section className="section mt-5 pt-4">
         <div className="container-fluid mt-4 p-4 bg-light rounded-4 shadow-sm">
           <div className="row g-4">

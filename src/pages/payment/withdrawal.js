@@ -267,7 +267,7 @@ const WithdrawalForm = () => {
         </form>
       </div>
       <ToastContainer/>
-      <Footer />
+     
     </>
   );
 };

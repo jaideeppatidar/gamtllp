@@ -6,11 +6,6 @@ import { blogData1 } from "../data/data";
 export const Business = () => {
   return (
     <>
-      <Navbar
-        navClass="defaultscroll sticky"
-        logolight={true}
-        menuClass="navigation-menu nav-left nav-light"
-      />
       <section
         className="bg-half-170 d-table w-100"
         style={{ backgroundImage: `url(${bg2})` }}

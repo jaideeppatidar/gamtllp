@@ -22,11 +22,6 @@ export default function AboutUs() {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
-      <Navbar
-        navClass="defaultscroll sticky"
-        logolight={true}
-        menuClass="navigation-menu nav-left nav-light"
-      />
       <section
         className="bg-half-170 d-table w-100"
         style={{ backgroundImage: `url(${bg3})` }}
@@ -206,7 +201,7 @@ export default function AboutUs() {
           <GetInTuch />
         </div>
       </section>
-      <Footer />
+    
     </>
   );
 }

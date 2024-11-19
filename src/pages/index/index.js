@@ -27,11 +27,7 @@ export default function IndexThree() {
 
   return (
     <>
-      <Navbar
-        navClass="defaultscroll sticky"
-        logolight={true}
-        menuClass="navigation-menu nav-left nav-light"
-      />
+    
       <section
         className="swiper-slider-hero position-relative d-block vh-100"
         id="home"
@@ -303,7 +299,7 @@ export default function IndexThree() {
         </div>
       </section>
       <FooterTopImage />
-      <Footer />
+     
     </>
   );
 }

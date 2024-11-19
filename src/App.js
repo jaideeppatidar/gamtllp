@@ -34,13 +34,20 @@ import TradingWithdrawal from './pages/payment/TradingWithdraw'
 import VerifyOTP from './pages/auth/auth_otpverification'
 import Blogs from "./pages/blogs";
 import BlogDetails from "./pages/blog-detail";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 function App() {
 
   return (
     <>
+       <Navbar
+        navClass="defaultscroll sticky"
+        logolight={true}
+        menuClass="navigation-menu nav-left nav-light"
+      />
       <Routes>
-      
+    
         <Route path="/superadmin/*" element={<SuperAdminRouting />} />
         {/* Public Routes */}
         <Route path="/" element={<Index />} />
@@ -212,7 +219,9 @@ function App() {
         {/* <Route path="/maintenance" element={<Maintenance />} /> */}
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<Error />} />
+       
       </Routes>
+      <Footer/>
       <ScrollTop />
     </>
   );

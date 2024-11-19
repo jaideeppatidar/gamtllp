@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { fetchBookingDataUserId } from "./services/api"; // No need to import delete API
 import { toast } from "react-toastify";
 
-const IMAGE_BASE_URL = "http://localhost:8080/";
+const IMAGE_BASE_URL = "http://13.60.219.5:8080/";
 
 const MyProduct = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
@@ -50,11 +50,6 @@ const MyProduct = () => {
   return (
     <>
       <div>
-        <Navbar
-          navClass="defaultscroll sticky"
-          logolight={true}
-          menuClass="navigation-menu nav-left nav-light"
-        />
         <section
           className="bg-half-170 d-table w-100"
           style={{ backgroundImage: `url(${bg2})` }}
@@ -188,7 +183,7 @@ const MyProduct = () => {
             <p>No products available. Please check back later.</p>
           )}
         </div>
-        <Footer />
+    
       </div>
     </>
   );
