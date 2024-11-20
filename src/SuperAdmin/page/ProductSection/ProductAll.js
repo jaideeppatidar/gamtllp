@@ -176,6 +176,7 @@ const AdminMyDocuments = () => {
                   <th>Product Name</th>
                   <th>Income</th>
                   <th>Persantage</th>
+                  <th>Monthly Plan</th>
                   <th>image</th>
                   <th>Action</th>
                 </tr>
@@ -193,6 +194,8 @@ const AdminMyDocuments = () => {
                     <td data-label="ProductName">{document.ProductName}</td>
                     <td data-label="Income">{document.Income}</td>
                     <td data-label="Persantage">{document.Persantage}</td>
+                    <td data-label="Persantage">{document.Months}</td>
+
                     <td data-label="image">{document.image}</td>
                     <td data-label="Action">
                       <div className="AdminAction-DataButon">

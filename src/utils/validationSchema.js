@@ -71,6 +71,7 @@ export const MeetingShedulValidation = Yup.object().shape({
 export const AddDocumentValidation = Yup.object().shape({
   ProductName: Yup.string().required("ProductName name is required"),
   Description: Yup.string().required("Description name is required"),
+  Months: Yup.string().required("Months name is required"),
   Income: Yup.date().required("Income is required").nullable(),
   Persantage: Yup.string().required("Persantage is required"),
   image: Yup.mixed()

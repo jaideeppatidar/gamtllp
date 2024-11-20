@@ -19,6 +19,7 @@ const AddDocumentPopup = ({ open, onClose }) => {
     Income: "",
     image: null,
     Persantage: "",
+    Months:''
   });
   const [errors, setErrors] = useState({});
 
@@ -41,7 +42,9 @@ const AddDocumentPopup = ({ open, onClose }) => {
       formDataToSend.append("Description", formData.Description);
       formDataToSend.append("Income", formData.Income);
       formDataToSend.append("Persantage", formData.Persantage);
-      formDataToSend.append("image", formData.image); // Append the image file
+      formDataToSend.append("image", formData.image); 
+      formDataToSend.append("Months", formData.Months); 
+
 
       const response = await AddProduct(formDataToSend); 
       console.log(response); 
@@ -52,6 +55,7 @@ const AddDocumentPopup = ({ open, onClose }) => {
         Income: "",
         image: null,
         Persantage: "",
+        Months:""
       });
   
       onClose(); 
@@ -121,6 +125,17 @@ const AddDocumentPopup = ({ open, onClose }) => {
             onChange={handleChange}
             error={Boolean(errors.Income)}
             helperText={errors.Income}
+          />
+           <TextField
+            fullWidth
+            margin="dense"
+            id="Months"
+            name="Months"
+            label="Months"
+            value={formData.Months}
+            onChange={handleChange}
+            error={Boolean(errors.Months)}
+            helperText={errors.Months}
           />
 
           <input
