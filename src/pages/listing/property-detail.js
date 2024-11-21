@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import "../../../node_modules/react-18-image-lightbox/style.css";
 import { ProductBookingApi, fetchProductId } from "../services/api";
 
-const IMAGE_BASE_URL = "http://gamtllp.com:8080/";
+const IMAGE_BASE_URL = "http://13.50.132.90:8080/";
 export default function PropertyDetails() {
   const [data, setData] = useState({});
   const [incomeInput, setIncomeInput] = useState("");

@@ -23,6 +23,8 @@ import ResetPassword from "./pages/auth/auth-re-password";
 import Signup from "./pages/auth/auth-signup";
 import Error from "./pages/Special/error";
 import { Business } from "./pages/Business";
+import ShopProducts from "./pages/shop/shopproducts";
+import Shopproductdetails from "./pages/shop/shpodetails";
 import PrivateRoute from "./pages/auth/PrivateRoute/PrivateRoute";
 import PublicRoute from "./pages/auth/PublicRoute/PublicRoute";
 import Payment from "./pages/payment/payment";
@@ -208,6 +210,22 @@ function App() {
           element={
             <PrivateRoute>
               <Business />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/shopproductdetails"
+          element={
+            <PrivateRoute>
+              <Shopproductdetails />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/shopproduct"
+          element={
+            <PrivateRoute>
+              <ShopProducts />
             </PrivateRoute>
           }
         />

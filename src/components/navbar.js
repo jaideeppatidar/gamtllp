@@ -162,6 +162,10 @@ export default function Navbar({ navClass, logolight, menuClass }) {
               <li>
                 <Link to="/aboutus">About Us</Link>
               </li>
+              <li>
+                <Link to="/shopproduct">Shop</Link>
+              </li>
+
               <li className="has-submenu parent-menu-item">
                 <Link to="/products"> Products </Link>
                 <span className="submenu-arrow"></span>
@@ -177,6 +181,14 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                       {" "}
                       Buy Products
                     </Link>
+                    
+                  </li>
+                  <li>
+                    <Link to="/shopproductdetails" className="sub-menu-item">
+                      {" "}
+                      ShopProductDetails
+                    </Link>
+                    
                   </li>
                 </ul>
               </li>

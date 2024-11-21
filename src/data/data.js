@@ -15,99 +15,53 @@ import client4 from "../assect/images/client/04.jpg";
 import client5 from "../assect/images/client/05.jpg";
 import client6 from "../assect/images/client/06.jpg";
 import client7 from "../assect/images/client/07.jpg";
-
 export const propertyData = [
   {
-    id: 1,
-    image: property5,
-    title: "Mustard Oil - Investment Opportunity",
-    description: `
-            This investment opportunity in Mustard Oil has a high potential for returns.
-            Ideal for investors looking for a profitable venture.`,
-    prices: {
-      investment: 100000,
-      dailyIncome: 500,
-      income30Days: 15000,
-      totalIncome1Month: 115000,
-      income90Days: 45000,
-      totalIncome3Months: 145000,
-      income365Days: 182500,
-      totalIncome1Year: 282500,
-    },
-  },
-
-  {
-    id: 2,
-    image: property1,
-    title: "तुवर दाल - Investment Opportunity",
-    description: `This investment opportunity in Mustard Oil has a high potential for returns.
-    Ideal for investors looking for a profitable venture`,
-
-    prices: {
-      investment: 40000,
-      dailyIncome: 500,
-      income30Days: 15000,
-      totalIncome1Month: 115000,
-      income90Days: 45000,
-      totalIncome3Months: 145000,
-      income365Days: 182500,
-      totalIncome1Year: 282500,
-    },
-  },
-
-  {
-    id: 3,
-    image: property4,
-    title: "सफेद चना - Investment Opportunity",
-    description: `This investment opportunity in Mustard Oil has a high potential for returns.
-    Ideal for investors looking for a profitable venture`,
-    prices: {
-      investment: 50000,
-      dailyIncome: 300,
-      income30Days: 15000,
-      totalIncome1Month: 115000,
-      income90Days: 45000,
-      totalIncome3Months: 145000,
-      income365Days: 182500,
-      totalIncome1Year: 282500,
-    },
+      id:1,
+      image: property1,
+      title: '10765 Hillshire Ave, Baton Rouge, LA 70810, USA',
   },
   {
-    id: 4,
-    image: property3,
-    title: "अलसी तेल - Investment Opportunity",
-    description: `This investment opportunity in Mustard Oil has a high potential for returns.
-    Ideal for investors looking for a profitable venture`,
-    prices: {
-      investment: 60000,
-      dailyIncome: 400,
-      income30Days: 15000,
-      totalIncome1Month: 115000,
-      income90Days: 45000,
-      totalIncome3Months: 145000,
-      income365Days: 182500,
-      totalIncome1Year: 282500,
-    },
+      id:2,
+      image: property2,
+      title: '59345 STONEWALL DR, Plaquemine, LA 70764, USA',
   },
-
   {
-    id: 5,
-    image: property3,
-    title: "सोयाबीन तेल - Investment Opportunity",
-    description: `This investment opportunity in Mustard Oil has a high potential for returns.
-    Ideal for investors looking for a profitable venture`,
-    prices: {
-      investment: 100000,
-      dailyIncome: 500,
-      income30Days: 15000,
-      totalIncome1Month: 115000,
-      income90Days: 45000,
-      totalIncome3Months: 145000,
-      income365Days: 182500,
-      totalIncome1Year: 282500,
-    },
+      id:3,
+      image: property3,
+      title: '3723 SANDBAR DR, Addis, LA 70710, USA',
   },
-];
+  {
+      id:4,
+      image: property4,
+      title: 'Lot 21 ROYAL OAK DR, Prairieville, LA 70769, USA',
+  },
+  {
+      id:5,
+      image: property5,
+      title: '710 BOYD DR, Unit #1102, Baton Rouge, LA 70808, USA',
+  },
+  {
+      id:6,
+      image: property6,
+      title: '5133 MCLAIN WAY, Baton Rouge, LA 70809, USA',
+  },
+  {
+      id:7,
+      image: property7,
+      title: '1574 Sharlo Ave, Baton Rouge, LA 70820, USA',
+  },
+  {
+      id:8,
+      image: property8,
+      title: '2528 BOCAGE LAKE DR, Baton Rouge, LA 70809, USA',
+  },
+  {
+      id:9,
+      image: property9,
+      title: '1533 NICHOLSON DR, Baton Rouge, LA 70802, USA',
+  },
+]
 
 export const clientData = [
   {

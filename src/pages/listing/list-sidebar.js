@@ -4,7 +4,7 @@ import bg3 from "../../assect/images/bg/03.jpg";
 import { FiHome, FiHeart, FiCamera } from "../../assect/icons/vander";
 import { fetchProductData } from "../services/api";
 
-const IMAGE_BASE_URL = "http://gamtllp.com:8080/";
+const IMAGE_BASE_URL = "http://13.50.132.90:8080/";
 export default function ListSidebar() {
     const [productData, setProductData] = useState([]);
 
