@@ -178,7 +178,7 @@ const Dashboard = () => {
             <tr key={product._id}>
               <td>
                 <img
-                  src={`http://13.50.132.90:8080/${product.image}`}
+                  src={`https://13.50.132.90:8080/${product.image}`}
                   alt={product.title}
                   style={{ width: "50px", height: "auto" }}
                 />

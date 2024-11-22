@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { fetchBookingDataUserId } from "./services/api"; // No need to import delete API
 import { toast } from "react-toastify";
 
-const IMAGE_BASE_URL = "http://13.50.132.90:8080/";
+const IMAGE_BASE_URL = "https://13.50.132.90:8080/";
 
 const MyProduct = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
