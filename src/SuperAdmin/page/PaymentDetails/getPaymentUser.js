@@ -6,7 +6,7 @@ import CommonHeader from "../../superadmincompo/CommonHeader/index";
 import { useParams } from "react-router-dom";
 
 import { getPaymentUserId } from "../../../pages/services/api";
-const API_URL = "http://localhost:8080/api/";
+const API_URL = "https://13.50.132.90/api/";
 
 const ITEMS_PER_PAGE = 6;
 
