@@ -6,7 +6,7 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
-const API_BASE_URL = "https://51.20.43.250:8080";
+const API_BASE_URL = "https://api.gamtllp.com";
 
 console.log("API URL: ", process.env.REACT_APP_API_URL);
 console.log("API URL: ", API_BASE_URL);
