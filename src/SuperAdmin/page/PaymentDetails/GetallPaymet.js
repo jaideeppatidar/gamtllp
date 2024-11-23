@@ -28,7 +28,6 @@ const PaymentDetailsAll = () => {
     setLoading(true); 
     try {
       const data = await GetallPaymets();
-      console.log(data.PaymentDetails)
       const uniqueData = getUniquePayment(data.PaymentDetails); 
       setpaymentData(uniqueData);
     } catch (error) {

@@ -6,10 +6,8 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
-const API_BASE_URL = "https://api.gamtllp.com";
+const API_BASE_URL = "https://api.gamtllp.com/api";
 
-console.log("API URL: ", process.env.REACT_APP_API_URL);
-console.log("API URL: ", API_BASE_URL);
 
 
 API.interceptors.request.use(
@@ -35,7 +33,7 @@ API.interceptors.response.use(
 );
 export const loginSuperAdmin = async (email, password) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/api/login`, {
+    const response = await API.post(`${API_BASE_URL}/login`, {
       email,
       password,
     });
@@ -47,7 +45,7 @@ export const loginSuperAdmin = async (email, password) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/api/employee/login`, {
+    const response = await API.post(`${API_BASE_URL}/employee/login`, {
       email,
       password,
     });
@@ -58,7 +56,7 @@ export const loginUser = async (email, password) => {
 };
 export const approveUser = async (userId) => {
   try {
-    const response = await API.put(`/approveUser/${userId}`);
+    const response = await API.put(`${API_BASE_URL}/approveUser/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error approving user:", error);
@@ -67,7 +65,7 @@ export const approveUser = async (userId) => {
 };
 export const approvedPayment = async (userId) => {
   try {
-    const response = await API.put(`/approve/${userId}`);
+    const response = await API.put(`${API_BASE_URL}/approve/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error approving user:", error);
@@ -79,7 +77,7 @@ export const approvedPayment = async (userId) => {
 //contact from 
 export const contactFrom = async (data) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/Contact`, data, {
+    const response = await axios.post(`${API_BASE_URL}/Contact`, data, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -92,7 +90,7 @@ export const contactFrom = async (data) => {
 export const registerUser = async (formData) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/api/registeruser`,
+      `${API_BASE_URL}/registeruser`,
       formData,
       {
         headers: {
@@ -112,7 +110,7 @@ export const verifyOTP = async (userId, otp) => {
 
   try {
     // Use `userId` in the URL path
-    const response = await API.post(`/verifyOTP/${userId}`, {
+    const response = await API.post(`${API_BASE_URL}/verifyOTP/${userId}`, {
       otp: String(otp),
     });
     return response.data;
@@ -123,7 +121,7 @@ export const verifyOTP = async (userId, otp) => {
 export const Withdrawal = async (formData) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/api/withdrawal`,
+      `${API_BASE_URL}/withdrawal`,
       formData,
       {}
     );
@@ -135,7 +133,7 @@ export const Withdrawal = async (formData) => {
 
 export const fetchProductData = async () => {
   try {
-    const response = await API.get(`${API_BASE_URL}/api/product`);
+    const response = await API.get(`${API_BASE_URL}/product`);
     return response.data;
   } catch (error) {
     console.error("Error fetching dialogue sessions:", error);
@@ -145,7 +143,7 @@ export const fetchProductData = async () => {
 export const fetchProductId = async (productId) => {
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/api/products/${productId}`
+      `${API_BASE_URL}/products/${productId}`
     );
     return response.data; // Return the product data from the API
   } catch (error) {
@@ -157,7 +155,7 @@ export const fetchProductId = async (productId) => {
 export const ProductBookingApi = async (bookingData) => {
   try {
     // Send a POST request to the API to create the booking
-    const response = await API.post('/booking',bookingData);
+    const response = await API.post(`${API_BASE_URL}/booking`,bookingData);
     return response.data; 
   } catch (error) {
     // Handle errors gracefully
@@ -167,7 +165,7 @@ export const ProductBookingApi = async (bookingData) => {
 };
 export const fetchBookingDataUserId = async (userId) => {
   try {
-    const response = await API.get(`/bookings/${userId}`);
+    const response = await API.get(`${API_BASE_URL}/bookings/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -176,7 +174,7 @@ export const fetchBookingDataUserId = async (userId) => {
 };
 export const deleteProductById = async (productId) => {
   try {
-    const response = await API.delete(`/booking/${productId}`, {});
+    const response = await API.delete(`${API_BASE_URL}/booking/${productId}`, {});
     return response.data;
   } catch (error) {
     throw error;
@@ -185,13 +183,13 @@ export const deleteProductById = async (productId) => {
 
 //Fetch All User
 export const getAllUserInSuperadmin = async () => {
-    const response = await API.get(`${API_BASE_URL}/api/alluser`);
+    const response = await API.get(`${API_BASE_URL}/alluser`);
     return response.data;
 };
 
 export const deleteUser = async (userId) => {
   try {
-    const response = await API.delete(`/deleteuser/${userId}`);
+    const response = await API.delete(`${API_BASE_URL}/deleteuser/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -204,7 +202,7 @@ export const deleteUser = async (userId) => {
 
 export const AddBusinessCategories = async (formData) => {
   try {
-    const response = await API.post("/BusniessCategory", formData, {
+    const response = await API.post(`${API_BASE_URL}/BusniessCategory`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -216,20 +214,20 @@ export const AddBusinessCategories = async (formData) => {
 };
 
 export const getAllProducts = async () => {
-  const response = await API.get(`/product`);
+  const response = await API.get(`${API_BASE_URL}/product`);
   return response.data;
 };
 
 // add category
 
 export const getAllBusinessCategories = async () => {
-  const response = await API.get(`/business-categories`);
+  const response = await API.get(`${API_BASE_URL}/business-categories`);
   return response.data;
 };
 
 export const DeleteCategoryBusiness = async (id) => {
   try {
-    const response = await API.delete(`/businessCategory/${id}`);
+    const response = await API.delete(`${API_BASE_URL}/businessCategory/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -240,7 +238,7 @@ export const DeleteCategoryBusiness = async (id) => {
 
 export const AddProduct = async (formData) => {
   try {
-    const response = await API.post("/product", formData, {
+    const response = await API.post(`${API_BASE_URL}/product`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -253,7 +251,7 @@ export const AddProduct = async (formData) => {
 
 export const deleteProduct = async (productId) => {
   try {
-    const response = await API.delete(`/product/${productId}`);
+    const response = await API.delete(`${API_BASE_URL}/product/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -265,24 +263,24 @@ export const deleteProduct = async (productId) => {
 //get all booking product user
 
 export const getAllBookingProduct = async () => {
-  const response = await API.get(`/allbooking`);
+  const response = await API.get(`${API_BASE_URL}/allbooking`);
   return response.data;
 };
 export const getProductUserId = async (userId) => {
-  const response = await API.get(`/bookings/${userId}`);
+  const response = await API.get(`${API_BASE_URL}/bookings/${userId}`);
   return response.data;
 };
 
 //  get widthdrwa rewuest
 export const GetWithdrawal = async () => {
-  const response = await API.get(`/withdrawalRequests`);
+  const response = await API.get(`${API_BASE_URL}/withdrawalRequests`);
   return response.data.data;
 };
 
 // payment request send 
 export const AddPaymentDetails = async (formData) => {
   try {
-    const response = await API.post("/payment-details", formData, {
+    const response = await API.post(`${API_BASE_URL}/payment-details`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -294,12 +292,12 @@ export const AddPaymentDetails = async (formData) => {
 };
 
 export const GetallPaymets = async () => {
-  const response = await API.get(`/getAllPaymentDetails`);
+  const response = await API.get(`${API_BASE_URL}/getAllPaymentDetails`);
   return response.data;
 };
 
 
 export const getPaymentUserId = async (userId) => {
-  const response = await API.get(`/payments/${userId}`);
+  const response = await API.get(`${API_BASE_URL}/payments/${userId}`);
   return response.data.PaymentDetails;
 };

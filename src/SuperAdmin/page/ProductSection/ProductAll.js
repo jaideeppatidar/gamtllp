@@ -26,7 +26,6 @@ const AdminMyDocuments = () => {
     setLoading(true);
     try {
       const response = await getAllProducts();
-      console.log(response);
       setDocumentsData(response.meetings);
     } catch (error) {
       console.error("Error fetching documents:", error);

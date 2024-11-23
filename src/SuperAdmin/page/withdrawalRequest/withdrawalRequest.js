@@ -25,7 +25,6 @@ const WithdrawalRequest = () => {
     setLoading(true);
     try {
       const data = await GetWithdrawal();
-      console.log("Fetched data:", data); // Check the structure here
       setFilteredDocuments(data);
       setApprovalStatus(
         data.reduce((acc, user) => {

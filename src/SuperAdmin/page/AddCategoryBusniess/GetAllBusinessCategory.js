@@ -26,7 +26,6 @@ const GetAllBusinessCategory = () => {
     setLoading(true);
     try {
       const response = await getAllBusinessCategories();
-      console.log(response);
       setDocumentsData(response.businessCategories);
     } catch (error) {
       console.error("Error fetching documents:", error);

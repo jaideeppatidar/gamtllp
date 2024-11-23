@@ -26,20 +26,15 @@ const AllEmployee = () => {
     setLoading(true);
     try {
       const data = await getAllUserInSuperadmin();
-      console.log('Fetched data:', data);
-      // Assuming data.users is the array of user objects
       const users = Array.isArray(data.users) ? data.users : [];
       setFilteredDocuments(users);
-      
-      // Create approval status object from users array
-      const newApprovalStatus = {};
+            const newApprovalStatus = {};
       users.forEach(user => {
         newApprovalStatus[user.userId] = user.isApproved;
       });
       setApprovalStatus(newApprovalStatus);
     } catch (error) {
       console.error("Error fetching users:", error);
-      toast.error("Failed to fetch users");
     } finally {
       setLoading(false);
     }
