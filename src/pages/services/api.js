@@ -8,7 +8,9 @@ const API = axios.create({
 });
 const API_BASE_URL = "https://13.50.132.90";
 
-// console.log("API URL: ", process.env.REACT_APP_API_URL);
+console.log("API URL: ", process.env.REACT_APP_API_URL);
+console.log("API URL: ", API_BASE_URL);
+
 
 API.interceptors.request.use(
   (config) => {
