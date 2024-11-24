@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoDark from "../assect/images/logo.png";
 import logoLight from "../assect/images/logo.png";
-import { FiUser } from "../assect/icons/vander";
 import "./navbar.css";
+
+import {  FiUser } from "../assect/icons/vander";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/authSlice/authSlice";
+
 export default function Navbar({ navClass, logolight, menuClass }) {
   const [scroll, setScroll] = useState(false);
-  const [isMenu, setIsMenu] = useState(false);
+  const [isMenu, setisMenu] = useState(false);
   const [profileModal, setProfileModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,23 +19,145 @@ export default function Navbar({ navClass, logolight, menuClass }) {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 0);
+    const links = document.querySelectorAll(".has-submenu > .menu-arrow");
+    const handleMenuToggle = (e) => {
+      e.stopPropagation(); // Stop click propagation
+      const submenu = e.currentTarget.parentElement.querySelector(".submenu");
+      if (submenu) {
+        submenu.classList.toggle("open"); // Toggle the 'open' class
+      }
+    };
+
+    links.forEach((arrow) => {
+      arrow.addEventListener("click", handleMenuToggle);
     });
+
+    // Cleanup event listeners on component unmount
     return () => {
-      window.removeEventListener("scroll", () => {});
+      links.forEach((arrow) => {
+        arrow.removeEventListener("click", handleMenuToggle);
+      });
     };
   }, []);
 
-  const toggleMenu = () => setIsMenu(!isMenu);
+  var mybutton = document.getElementById("back-to-top");
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (mybutton != null) {
+      if (
+        document.body.scrollTop > 500 ||
+        document.documentElement.scrollTop > 500
+      ) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+  }
+
+  // Toggle menu
+  const toggleMenu = () => {
+    setisMenu(!isMenu);
+    const navElement = document.getElementById("navigation");
+    if (navElement) {
+      const links = navElement.querySelectorAll(".has-submenu > .menu-arrow");
+      links.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault(); // Prevent default link behavior
+          const submenu = link.nextElementSibling; // Locate the submenu
+          if (submenu && submenu.classList.contains("submenu")) {
+            submenu.classList.toggle("open"); // Toggle 'open' class
+          }
+        });
+      });
+    }
+  };
+
+  function getClosest(elem, selector) {
+    // Element.matches() polyfill
+    if (!Element.prototype.matches) {
+      Element.prototype.matches =
+        Element.prototype.matchesSelector ||
+        Element.prototype.mozMatchesSelector ||
+        Element.prototype.msMatchesSelector ||
+        Element.prototype.oMatchesSelector ||
+        Element.prototype.webkitMatchesSelector ||
+        function (s) {
+          var matches = (this.document || this.ownerDocument).querySelectorAll(
+              s
+            ),
+            i = matches.length;
+          while (--i >= 0 && matches.item(i) !== this) {}
+          return i > -1;
+        };
+    }
+
+    // Get the closest matching element
+    for (; elem && elem !== document; elem = elem.parentNode) {
+      if (elem.matches(selector)) return elem;
+    }
+    return null;
+  }
   const handleProfileClick = () => {
     setProfileModal(!profileModal);
   };
+  function activateMenu() {
+    var menuItems = document.getElementsByClassName("sub-menu-item");
+    if (menuItems) {
+      var matchingMenuItem = null;
+      for (var idx = 0; idx < menuItems.length; idx++) {
+        if (menuItems[idx].href === window.location.href) {
+          matchingMenuItem = menuItems[idx];
+        }
+      }
+
+      if (matchingMenuItem) {
+        matchingMenuItem.classList.add("active");
+
+        var immediateParent = getClosest(matchingMenuItem, "li");
+
+        if (immediateParent) {
+          immediateParent.classList.add("active");
+        }
+
+        var parent = getClosest(immediateParent, ".child-menu-item");
+        if (parent) {
+          parent.classList.add("active");
+        }
+
+        var parent = getClosest(parent || immediateParent, ".parent-menu-item");
+
+        if (parent) {
+          parent.classList.add("active");
+
+          var parentMenuitem = parent.querySelector(".menu-item");
+          if (parentMenuitem) {
+            parentMenuitem.classList.add("active");
+          }
+
+          var parentOfParent = getClosest(parent, ".parent-parent-menu-item");
+          if (parentOfParent) {
+            parentOfParent.classList.add("active");
+          }
+        } else {
+          var parentOfParent = getClosest(
+            matchingMenuItem,
+            ".parent-parent-menu-item"
+          );
+          if (parentOfParent) {
+            parentOfParent.classList.add("active");
+          }
+        }
+      }
+    }
+  }
   const handleLogout = () => {
     dispatch(logout());
     navigate("/auth-login");
   };
-
   return (
     <>
       <header
@@ -80,11 +204,13 @@ export default function Navbar({ navClass, logolight, menuClass }) {
               />
             </Link>
           )}
+
           <div className="menu-extras">
             <div className="menu-item">
               <Link
                 className={`navbar-toggle ${isMenu ? "open" : ""}`}
-                onClick={toggleMenu}
+                id="isToggle"
+                onClick={() => toggleMenu()}
               >
                 <div className="lines">
                   <span></span>
@@ -128,8 +254,6 @@ export default function Navbar({ navClass, logolight, menuClass }) {
               )}
             </li>
           </ul>
-
-          {/* Profile Modal */}
           {profileModal && (
             <div className="profile-modal">
               <div className="modal-contents">
@@ -166,29 +290,20 @@ export default function Navbar({ navClass, logolight, menuClass }) {
                 <Link to="/shopproduct">Shop</Link>
               </li>
 
-              <li className="has-submenu parent-menu-item">
-                <Link to="/products"> Products </Link>
-                <span className="submenu-arrow"></span>
+              <li className="has-submenu parent-parent-menu-item">
+                <Link to="/products" onClick={toggleMenu}>
+                  Products
+                </Link>
+                <span className="menu-arrow"></span>
                 <ul className="submenu">
                   <li>
-                    <Link to="/myproduct" className="sub-menu-item">
-                      {" "}
-                      My Products
-                    </Link>
+                    <Link to="/myproduct">My Products</Link>
                   </li>
                   <li>
-                    <Link to="/buy" className="sub-menu-item">
-                      {" "}
-                      Buy Products
-                    </Link>
-                    
+                    <Link to="/buy">Buy Products</Link>
                   </li>
                   <li>
-                    <Link to="/shopproductdetails" className="sub-menu-item">
-                      {" "}
-                      ShopProductDetails
-                    </Link>
-                    
+                    <Link to="/shopproductdetails">Shop Product Details</Link>
                   </li>
                 </ul>
               </li>

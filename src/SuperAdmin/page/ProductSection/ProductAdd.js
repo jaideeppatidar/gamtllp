@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -10,9 +10,9 @@ import { AddDocumentValidation } from "../../../utils/validationSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./product.css"; 
-import { AddProduct } from "../../../pages/services/api";
+import { AddProduct, EditProduct } from "../../../pages/services/api";
 
-const AddDocumentPopup = ({ open, onClose }) => {
+const AddDocumentPopup = ({ open, onClose, product ,fetchDocuments }) => {
   const [formData, setFormData] = useState({
     ProductName: "",
     Description: "",
@@ -22,7 +22,6 @@ const AddDocumentPopup = ({ open, onClose }) => {
     Months:''
   });
   const [errors, setErrors] = useState({});
-
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData((prevData) => ({
@@ -30,6 +29,30 @@ const AddDocumentPopup = ({ open, onClose }) => {
       [name]: files ? files[0] : value,
     }));
   };
+  useEffect(() => {
+    if (product) {
+      setFormData({
+        ProductName: product.ProductName || "",
+        Description: product.Description || "",
+        Income: product.Income || "",
+        image: product.image || null,
+        Persantage: product.Persantage || "",
+        Months: product.Months || "",
+      });
+    } else {
+      setFormData({
+        ProductName: "",
+        Description: "",
+        Income: "",
+        image: null,
+        Persantage: "",
+        Months: "",
+       
+      });
+    }
+  }, [product, open]);  
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,19 +69,18 @@ const AddDocumentPopup = ({ open, onClose }) => {
       formDataToSend.append("Months", formData.Months); 
 
 
-      const response = await AddProduct(formDataToSend); 
-      console.log(response); 
-      toast.success("Document sent successfully");
-      setFormData({
-        ProductName: "",
-        Description: "",
-        Income: "",
-        image: null,
-        Persantage: "",
-        Months:""
-      });
-  
-      onClose(); 
+      if (product) {
+        await EditProduct(product.productId, formDataToSend);
+        toast.success("product updated successfully!");
+      } else {
+        await AddProduct(formDataToSend);
+        toast.success("Asset added successfully!");
+      }
+
+      setTimeout(async () => {
+        onClose();
+        await fetchDocuments();
+      }, 3000);
     } catch (err) {
       console.error("Error:", err);
       if (err.response) {
@@ -80,8 +102,8 @@ const AddDocumentPopup = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose} classes={{ paper: "dialog" }}>
       <form onSubmit={handleSubmit}>
-        <DialogTitle>Add New Document</DialogTitle>
-        <DialogContent>
+      <DialogTitle>{product ? "Edit Product" : "Add Product"}</DialogTitle>   
+           <DialogContent>
           <TextField
             fullWidth
             margin="dense"

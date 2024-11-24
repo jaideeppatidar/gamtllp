@@ -21,6 +21,8 @@ const AdminMyDocuments = () => {
   const [loading, setLoading] = useState(true);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [documentToDelete, setDocumentToDelete] = useState(null);
+  const [productToEdit, setProductToEdit] = useState(null); 
+
 
   const fetchDocuments = async () => {
     setLoading(true);
@@ -92,6 +94,11 @@ const AdminMyDocuments = () => {
   };
 
   const handleAddClick = () => {
+    setProductToEdit(null)
+    setIsPopupOpen(true);
+  };
+  const handleEditClick = (product) => {
+    setProductToEdit(product)
     setIsPopupOpen(true);
   };
 
@@ -198,6 +205,12 @@ const AdminMyDocuments = () => {
                     <td data-label="image">{document.image}</td>
                     <td data-label="Action">
                       <div className="AdminAction-DataButon">
+                      <button
+                        className="assets-edit-button"
+                        onClick={() => handleEditClick(document)}  
+                      >
+                        <IconMapper iconName={"pen"} isFontAwesome={true} />
+                      </button>
                         <button
                           className="AdminText-delete"
                           onClick={() =>
@@ -240,6 +253,8 @@ const AdminMyDocuments = () => {
         open={isPopupOpen}
         onClose={handleClosePopup}
         onSubmit={handleFormSubmit}
+        product={productToEdit}
+        fetchDocuments={fetchDocuments}
       />
     </div>
   );

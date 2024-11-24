@@ -70,7 +70,7 @@ export default function ListSidebar() {
         </div>
 
         <div className="row g-4 mt-0">
-          {productData.slice(0, 6).map((item, index) => (
+          {productData.map((item, index) => (
             <div className="col-lg-4 col-md-6 col-12" key={index}>
               <div className="card property border-0 shadow position-relative overflow-hidden rounded-3">
                 <div className="property-image position-relative overflow-hidden shadow">

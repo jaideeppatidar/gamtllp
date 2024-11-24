@@ -7,6 +7,8 @@ const API = axios.create({
   },
 });
 const API_BASE_URL = "https://api.gamtllp.com/api";
+// const API_BASE_URL = "http://localhost:7070/api";
+
 
 
 
@@ -239,6 +241,18 @@ export const DeleteCategoryBusiness = async (id) => {
 export const AddProduct = async (formData) => {
   try {
     const response = await API.post(`${API_BASE_URL}/product`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const EditProduct = async (productId,formData) => {
+  try {
+    const response = await API.put(`${API_BASE_URL}/product/${productId}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

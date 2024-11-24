@@ -20,7 +20,7 @@ export default function Footer(){
                                     <Link to="#" className="logo-footer">
                                         <img src={logoLight} alt="" style={{ height:'80px'}}/>
                                     </Link>
-                                    <p className="mt-4">A great plateform to buy, sell and rent your properties without any agent or commisions.</p>
+                                    <p className="mt-4">A great plateform to buy, sell and Invest Income and get Money</p>
                                     <ul className="list-unstyled social-icon foot-social-icon mb-0 mt-4">
                                         <li className="list-inline-item"><Link to="https://1.envato.market/towntor-react" target="_blank" className="rounded-3"><FiShoppingCart className="fea icon-sm align-middle"/></Link></li>
                                         <li className="list-inline-item"><Link to="https://dribbble.com/shreethemes" target="_blank" className="rounded-3"><FiDribbble className="fea icon-sm align-middle"/></Link></li>
@@ -31,7 +31,6 @@ export default function Footer(){
                                         <li className="list-inline-item"><Link to="mailto:support@shreethemes.in" className="rounded-3"><FiMail className="fea icon-sm align-middle"/></Link></li>
                                     </ul>
                                 </div>
-                                
                                 <div className="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                                     <h5 className="footer-head">Company</h5>
                                     <ul className="list-unstyled footer-list mt-4">
