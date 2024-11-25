@@ -15,7 +15,9 @@ export default function Buy() {
   const fetchProduct = async () => {
     try {
       const response = await fetchBookingDataUserId(userId);
-      setSelectedProduct(Array.isArray(response.bookings) ? response.bookings : []);
+      setSelectedProduct(
+        Array.isArray(response.bookings) ? response.bookings : []
+      );
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
@@ -23,7 +25,7 @@ export default function Buy() {
   useEffect(() => {
     fetchProduct();
   }, [userId]);
- const deleteProduct = async (productId) => {
+  const deleteProduct = async (productId) => {
     try {
       await deleteProductById(productId);
       fetchProduct();
@@ -36,7 +38,6 @@ export default function Buy() {
       toast.error("Failed to delete product");
     }
   };
-
 
   return (
     <>
@@ -130,7 +131,16 @@ export default function Buy() {
                     </ul>
                     <div className="d-flex justify-content-center gap-3 ">
                       <div className="d-flex justify-content-center mt-4">
-                        <Link to="/bank-details" className="btn btn-primary">Checkout</Link>
+                        <Link
+                          to="/bank-details"
+                          state={{
+                            productName: product.title,
+                            income: product.income,
+                          }}
+                          className="btn btn-primary"
+                        >
+                          Checkout
+                        </Link>
                       </div>
                       <div className="d-flex justify-content-center mt-4">
                         <button
@@ -150,7 +160,6 @@ export default function Buy() {
           <p>No products available. Please check back later.</p>
         )}
       </div>
-     
     </>
   );
 }

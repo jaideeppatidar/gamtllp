@@ -5,6 +5,7 @@ import bg3 from "../assect/images/2.png";
 import heroImg from "../assect/images/digital_far.png";
 import dots from "../assect/images/svg/dots.svg";
 import image1 from "../assect/images/1.jpg";
+import Certificate from '../assect/images/Certificate/CERTIFICATION OF INCORPORATION.png'
 import map from "../assect/images/map.png";
 
 import About from "../components/about";
@@ -111,17 +112,13 @@ export default function AboutUs() {
             <div className="col-lg-6 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
               <div className="section-title ms-lg-5">
                 <h6 className="text-primary fw-medium mb-2">
-                  Our story: Towntor
+                  Our story: GAMTLLP
                 </h6>
                 <h4 className="title mb-3">
-                  Efficiency. <br /> Transparency. Control.
+                  Geet. <br /> Agro Multitrade.
                 </h4>
                 <p className="text-muted para-desc mb-0">
-                  Towntor developed a platform for the Real Estate marketplace
-                  that allows buyers and sellers to easily execute a transaction
-                  on their own. The platform drives efficiency, cost
-                  transparency and control into the hands of the consumers.
-                  Towntor is Real Estate Redefined.
+                Geet Agro is revolutionizing the agricultural sector with an innovative platform that empowers farmers and buyers to connect seamlessly. By streamlining transactions, enhancing cost transparency, and offering complete control, Geet Agro brings efficiency and trust to the agricultural marketplace. Geet Agro – Redefining Agriculture for a Sustainable Future.
                 </p>
 
                 <div className="mt-4">
@@ -138,6 +135,29 @@ export default function AboutUs() {
             </div>
           </div>
         </div>
+        <div class="container mt-100 mt-60">
+  <div class="row align-items-center d-flex">
+    <div class="col-6 text-center border border-dark rounded">
+      <img
+        src={Certificate}
+        alt="Left Decoration"
+        class="img-fluid"
+        style={{"height": "100vh;"}}
+      />
+    </div>
+
+    
+
+    <div class="col-6 text-center border border-dark rounded">
+      <img
+        src={Certificate}
+        alt="Right Decoration"
+        class="img-fluid"
+        style={{"height": "100vh;"}}
+      />
+    </div>
+  </div>
+</div>
 
         <div className="container mt-100 mt-60">
           <About />

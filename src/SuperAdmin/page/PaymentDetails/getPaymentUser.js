@@ -6,7 +6,7 @@ import CommonHeader from "../../superadmincompo/CommonHeader/index";
 import { useParams } from "react-router-dom";
 
 import { getPaymentUserId } from "../../../pages/services/api";
-const API_URL = "https://13.50.132.90/api/";
+const IMAGE_BASE_URL = "https://api.gamtllp.com/";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -157,7 +157,17 @@ const fetchPayment = async () => {
                     <td data-label="date">{payment.date}</td>
                     <td data-label="amount">{payment.amount}</td>
                     <td data-label="paymentscreensort">
-                <img src={`${API_URL}${payment.paymentscreensort}`} alt="paymentscreensort" />
+                    <img
+                    src={`${IMAGE_BASE_URL}${payment.paymentscreensort}`}
+                    alt={ "paymentscreensort"}
+                    className="img-fluid"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover", 
+                      borderRadius: "8px", 
+                    }}
+                  />
 </td>
 
                     {/* <td data-label="Payment Status">

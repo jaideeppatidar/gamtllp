@@ -5,18 +5,20 @@ import { PaymentValidation } from "../../utils/validationSchema";
 import { ToastContainer, toast } from "react-toastify";
 import { AddPaymentDetails } from "../services/api";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import bg3 from "../../assect/images/3.png";
 export default function BankDetails() {
   const [errors, setErrors] = useState({});
   const { userId, firstName } = useSelector((state) => state.auth.user);
-
+  const location = useLocation();
+  const { productName, income } = location.state || {};
   const [formData, setFormData] = useState({
     paymentscreensort: null,
     date: "",
-    amount: "",
+    amount: income,
     userId:userId,
-    firstName:firstName
+    firstName:firstName,
+    // productName:productName
   });
 
   const handleFileChange = (e) => {
@@ -40,6 +42,8 @@ export default function BankDetails() {
       formDataToSend.append("date", formData.date);
       formDataToSend.append("amount", formData.amount);
       formDataToSend.append("firstName", formData.firstName);
+      // formDataToSend.append("productName", formData.productName);
+
       formDataToSend.append("userId", formData.userId);
       const response = await AddPaymentDetails(formDataToSend); 
       toast.success(response.message);
@@ -236,6 +240,24 @@ export default function BankDetails() {
                 {errors.amount && (
             <p className="error-text">{errors.amount}</p>
           )}
+          {/* <div className="mb-3 text-start">
+                  <label htmlFor="productName" className="form-label">
+                    Amount:
+                  </label>
+                  <input
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    className="form-control"
+                    placeholder="Enter productName"
+                    value={formData.productName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                {errors.productName && (
+            <p className="error-text">{errors.productName}</p>
+          )} */}
 
                 <button
                   type="submit"

@@ -102,4 +102,5 @@ export const PaymentValidation = Yup.object().shape({
     .test("fileType", "Only image files are allowed", (value) => {
       return value && ["image/jpeg", "image/png"].includes(value.type);
     }),
+  // ProductName: Yup.string().required("ProductName  is required"),
 });

@@ -8,6 +8,7 @@ import { getAllBusinessCategories,  DeleteCategoryBusiness } from "../../../page
 import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 const ITEMS_PER_PAGE = 6;
+const IMAGE_BASE_URL = "https://api.gamtllp.com/";
 
 const GetAllBusinessCategory = () => {
   const [documentsData, setDocumentsData] = useState([]);
@@ -188,7 +189,17 @@ const GetAllBusinessCategory = () => {
                     </td>
                     <td data-label="categoryName">{categor.categoryName}</td>
                     <td data-label="categoryDescription">{categor.categoryDescription}</td>
-                    <td data-label="image">{categor.categoryImage}</td>
+                    <td data-label="image"><img
+                    src={`${IMAGE_BASE_URL}${categor.categoryImage}`}
+                    alt={ "Product Image"}
+                    className="img-fluid"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover", 
+                      borderRadius: "8px", 
+                    }}
+                  /></td>
                     <td data-label="Action">
                       <div className="AdminAction-DataButon">
                         <button

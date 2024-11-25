@@ -35,7 +35,7 @@ const AddDocumentPopup = ({ open, onClose, product ,fetchDocuments }) => {
         ProductName: product.ProductName || "",
         Description: product.Description || "",
         Income: product.Income || "",
-        image: product.image || null,
+        image: product.image || '',
         Persantage: product.Persantage || "",
         Months: product.Months || "",
       });
@@ -44,7 +44,7 @@ const AddDocumentPopup = ({ open, onClose, product ,fetchDocuments }) => {
         ProductName: "",
         Description: "",
         Income: "",
-        image: null,
+        image: '',
         Persantage: "",
         Months: "",
        
@@ -74,7 +74,7 @@ const AddDocumentPopup = ({ open, onClose, product ,fetchDocuments }) => {
         toast.success("product updated successfully!");
       } else {
         await AddProduct(formDataToSend);
-        toast.success("Asset added successfully!");
+        toast.success("product added successfully!");
       }
 
       setTimeout(async () => {

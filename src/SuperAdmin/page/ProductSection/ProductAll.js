@@ -8,8 +8,9 @@ import { getAllProducts, deleteProduct } from "../../../pages/services/api";
 import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 const ITEMS_PER_PAGE = 6;
+const IMAGE_BASE_URL = "https://api.gamtllp.com/";
 
-const AdminMyDocuments = () => {
+const ALLProducts = () => {
   const [documentsData, setDocumentsData] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
   const [selectedDocuments, setSelectedDocuments] = useState([]);
@@ -202,7 +203,19 @@ const AdminMyDocuments = () => {
                     <td data-label="Persantage">{document.Persantage}</td>
                     <td data-label="Persantage">{document.Months}</td>
 
-                    <td data-label="image">{document.image}</td>
+                    <td data-label="image">
+                    <img
+                    src={`${IMAGE_BASE_URL}${document.image}`}
+                    alt={ "Product Image"}
+                    className="img-fluid"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover", 
+                      borderRadius: "8px", 
+                    }}
+                  />
+                    </td>
                     <td data-label="Action">
                       <div className="AdminAction-DataButon">
                       <button
@@ -260,4 +273,4 @@ const AdminMyDocuments = () => {
   );
 };
 
-export default AdminMyDocuments;
+export default ALLProducts;
