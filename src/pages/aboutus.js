@@ -5,7 +5,14 @@ import bg3 from "../assect/images/2.png";
 import heroImg from "../assect/images/digital_far.png";
 import dots from "../assect/images/svg/dots.svg";
 import image1 from "../assect/images/1.jpg";
-import Certificate from '../assect/images/Certificate/CERTIFICATION OF INCORPORATION.png'
+import Certificate from "../assect/images/Certificate/CERTIFICATION OF INCORPORATION.png";
+import Certificate1 from "../assect/images/Certificate/page1.png";
+import Certificate2 from "../assect/images/Certificate/page2.png";
+import Certificate3 from "../assect/images/Certificate/page3.png";
+import PanCard from "../assect/images/Certificate/pa.jpeg";
+
+
+
 import map from "../assect/images/map.png";
 
 import About from "../components/about";
@@ -118,11 +125,16 @@ export default function AboutUs() {
                   Geet. <br /> Agro Multitrade.
                 </h4>
                 <p className="text-muted para-desc mb-0">
-                Geet Agro is revolutionizing the agricultural sector with an innovative platform that empowers farmers and buyers to connect seamlessly. By streamlining transactions, enhancing cost transparency, and offering complete control, Geet Agro brings efficiency and trust to the agricultural marketplace. Geet Agro – Redefining Agriculture for a Sustainable Future.
+                  Geet Agro is revolutionizing the agricultural sector with an
+                  innovative platform that empowers farmers and buyers to
+                  connect seamlessly. By streamlining transactions, enhancing
+                  cost transparency, and offering complete control, Geet Agro
+                  brings efficiency and trust to the agricultural marketplace.
+                  Geet Agro – Redefining Agriculture for a Sustainable Future.
                 </p>
 
                 <div className="mt-4">
-                <a
+                  <a
                     href="/docs/ UdyamRegistration.pdf"
                     target="_blank"
                     className="text-dark read-more"
@@ -135,29 +147,70 @@ export default function AboutUs() {
             </div>
           </div>
         </div>
+
         <div class="container mt-100 mt-60">
-  <div class="row align-items-center d-flex">
-    <div class="col-6 text-center border border-dark rounded">
-      <img
-        src={Certificate}
-        alt="Left Decoration"
-        class="img-fluid"
-        style={{"height": "100vh;"}}
-      />
-    </div>
+        <div className="section-title text-center mb-4 pb-2">
+              <h4 className="title mb-3">GAMTLLP Certificate</h4>
+              <p className="text-muted para-desc mb-0 mx-auto">
+               UDYAM Registration Certificate
+              </p>
+            </div>
+          <div class="row align-items-center d-flex">
+            <div class="col-6 text-center border border-dark rounded">
+              <img
+                src={Certificate}
+                alt="Left Decoration"
+                class="img-fluid"
+                style={{ height: "100vh;" }}
+              />
+            </div>
 
-    
+            <div class="col-6 text-center border border-dark rounded">
+              <img
+                src={Certificate1}
+                alt="Right Decoration"
+                class="img-fluid"
+                style={{ height: "100vh;" }}
+              />
+            </div>
+          </div>
+        </div>
 
-    <div class="col-6 text-center border border-dark rounded">
-      <img
-        src={Certificate}
-        alt="Right Decoration"
-        class="img-fluid"
-        style={{"height": "100vh;"}}
-      />
-    </div>
-  </div>
-</div>
+        <div class="container mt-100 mt-60">
+          <div class="row align-items-center">
+            <div class="col-6 text-center border border-dark rounded">
+              <img
+                src={Certificate2}
+                alt="Left Decoration"
+                class="img-fluid"
+                style={{ height: "100vh;" }}
+              />
+            </div>
+
+            <div class="col-6 text-center border border-dark rounded">
+              <img
+                src={Certificate3}
+                alt="Right Decoration"
+                class="img-fluid"
+                style={{ height: "100vh;" }}
+              />
+            </div>
+          </div>
+        </div>
+        <div class="container mt-100 mt-60">
+          <div class="row align-items-center">
+           
+
+            <div class="col-12 text-center border border-dark rounded">
+              <img
+                src={PanCard}
+                alt="Right Decoration"
+                class="img-fluid"
+                style={{ height: "auto" }}
+              />
+            </div>
+          </div>
+        </div>
 
         <div className="container mt-100 mt-60">
           <About />
@@ -223,7 +276,6 @@ export default function AboutUs() {
           <GetInTuch />
         </div>
       </section>
-    
     </>
   );
 }
