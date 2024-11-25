@@ -315,3 +315,8 @@ export const getPaymentUserId = async (userId) => {
   const response = await API.get(`${API_BASE_URL}/payments/${userId}`);
   return response.data.PaymentDetails;
 };
+
+export const getIncomeById = async (userId) => {
+  const response = await API.get(`${API_BASE_URL}/addincome/${userId}`);
+  return response.data;
+};

@@ -159,6 +159,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   {isOpen && <span className="list-item-text">GetallPaymet</span>}
                 </Link>
               </li>
+              <li
+                className={`list-item ${activeItem === "/superadmin/addincome" ? "active" : ""}`}
+                onClick={() => handleItemClick("/superadmin/addincome")}
+              >
+                <Link to="/superadmin/addincome" className="list-item">
+                  <IconMapper className="ImageIcons" iconName="MyDocuments" />
+                  {isOpen && <span className="list-item-text">AddIncome</span>}
+                </Link>
+              </li>
              
               
               

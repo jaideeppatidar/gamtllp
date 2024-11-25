@@ -48,10 +48,8 @@ const SuperAdminRouting = () => {
         <Route path="bookingdataUser/:userId" element={<BookingProductUser />} />
         <Route path="GetAllBusinessCategory" element={<GetAllBusinessCategory />} />
         <Route path="GetallPaymet" element={<GetallPaymet />} />
-        <Route path="GetallPaymet/:userId" element={<GetAllPaymentUser/>} />   
-
-
-
+        <Route path="GetallPaymet/:userId" element={<GetAllPaymentUser/>} />  
+        <Route path="addincome" element={<GetAllPaymentUser/>} />   
         <Route
           path="/WithdrawalRequest"
           element={
