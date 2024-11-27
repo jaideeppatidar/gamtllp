@@ -22,6 +22,7 @@ const AdminTimesheet = () => {
     setLoading(true);
     try {
       const data = await getProductUserId(userId);
+      console.log(data)
       const userSpecificData = data.bookings
         .filter((item) => item.userId === userId)
         .map((item) => ({
@@ -129,6 +130,7 @@ const AdminTimesheet = () => {
                     />
                   </th>
                   <th>Product ID</th>
+                  <th>UserName</th>
                   <th>Title</th>
                   <th>Income</th>
                   <th>Booking Date</th>
@@ -145,6 +147,8 @@ const AdminTimesheet = () => {
                       />
                     </td>
                     <td data-label="Product ID">{timesheet.productId}</td>
+                    <td data-label="Product ID">{timesheet.firstName}</td>
+
                     <td data-label="Title">{timesheet.title}</td>
                     <td data-label="Income">{timesheet.income}</td>
                     <td data-label="Booking Date">{timesheet.bookingDate}</td>

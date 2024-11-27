@@ -316,7 +316,50 @@ export const getPaymentUserId = async (userId) => {
   return response.data.PaymentDetails;
 };
 
+////
+
 export const getIncomeById = async (userId) => {
   const response = await API.get(`${API_BASE_URL}/addincome/${userId}`);
+  return response.data;
+};
+export const getAllIncome = async () => {
+  const response = await API.get(`${API_BASE_URL}/addincome`);
+  return response.data;
+};
+
+export const AddIncomeMenual = async (formData) => {
+  try {
+    const response = await API.post(`${API_BASE_URL}/addincome`, formData, {
+    
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const EditIncomeMenual = async (userId,formData) => {
+  try {
+    const response = await API.put(`${API_BASE_URL}/addincome/${userId}`, formData, {
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const deleteIcome = async (userId) => {
+  try {
+    const response = await API.delete(`${API_BASE_URL}/addincome/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    toast.error(error.response?.data?.message || "Error deleting user");
+    throw error;
+  }
+};
+
+///      kjgjhbhhhvhgftuvhvuycu
+export const getProfiteById = async (userId) => {
+  const response = await API.get(`${API_BASE_URL}/profite/${userId}`);
   return response.data;
 };

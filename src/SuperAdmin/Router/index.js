@@ -16,6 +16,7 @@ import WithdrawalRequest from "../page/withdrawalRequest/withdrawalRequest";
 import GetAllBusinessCategory from '../page/AddCategoryBusniess/GetAllBusinessCategory'
 import GetallPaymet from '../page/PaymentDetails/GetallPaymet'
 import GetAllPaymentUser from '../page/PaymentDetails/getPaymentUser'
+import AddMenualIcome from '../page/AddMenualIcome/AddMenualIcome'
 
 
 const SuperAdminRouting = () => {
@@ -49,7 +50,7 @@ const SuperAdminRouting = () => {
         <Route path="GetAllBusinessCategory" element={<GetAllBusinessCategory />} />
         <Route path="GetallPaymet" element={<GetallPaymet />} />
         <Route path="GetallPaymet/:userId" element={<GetAllPaymentUser/>} />  
-        <Route path="addincome" element={<GetAllPaymentUser/>} />   
+        <Route path="addincome" element={<AddMenualIcome/>} />   
         <Route
           path="/WithdrawalRequest"
           element={

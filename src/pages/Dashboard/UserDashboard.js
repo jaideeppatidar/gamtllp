@@ -3,12 +3,14 @@ import bg3 from "../../assect/images/2.png";
 import Profile from "../../assect/images/gamtllp.png";
 
 import { useSelector } from "react-redux";
-import { fetchBookingDataUserId,  getIncomeById } from "../services/api";
+import { fetchBookingDataUserId,  getIncomeById, getProfiteById } from "../services/api";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [purchasedProducts, setPurchasedProducts] = useState([]);
   const [incomes, setIncomes] = useState([]);
+  const [profite, setProfite] = useState([]);
+
 
   const { userId, firstName,referralLink } = useSelector((state) => state.auth.user);
   useEffect(() => {
@@ -29,7 +31,10 @@ const Dashboard = () => {
   const fetchIncome = async () => {
     try {
       const response = await getIncomeById(userId);
+      const profiteres = await getProfiteById(userId);
+
       setIncomes(response[0]);
+      setProfite(profiteres[0]);
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
@@ -129,7 +134,7 @@ const Dashboard = () => {
           <div className="card p-3">
             <h5 className="card-title">Trading Wallet</h5>
             <p className="card-text text-muted">
-            {`Total Balance: ${incomes.income}`}
+            {`Total Balance: ${incomes.income || 0}`}
             </p>
           </div>
         </div>
@@ -144,7 +149,7 @@ const Dashboard = () => {
         <div className="col-12 col-md-6 mb-3">
           <div className="card p-3">
             <h5 className="card-title">Profit Wallet</h5>
-            <p className="card-text text-muted">{`Total Balance: ${0}`}</p>
+            <p className="card-text text-muted">{ `Total Profit:   ${profite.income}`}</p>
           </div>
         </div>
         <div className="col-12 col-md-6 mb-2">
