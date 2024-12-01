@@ -168,12 +168,22 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   {isOpen && <span className="list-item-text">AddIncome</span>}
                 </Link>
               </li>
+
+              <li
+                className={`list-item ${activeItem === "/superadmin/profiteicome" ? "active" : ""}`}
+                onClick={() => handleItemClick("/superadmin/profiteicome")}
+              >
+                <Link to="/superadmin/profiteicome" className="list-item">
+                  <IconMapper className="ImageIcons" iconName="MyDocuments" />
+                  {isOpen && <span className="list-item-text">ProfitIncome</span>}
+                </Link>
+              </li>
              
               
               
                
             
-              {/* <li className={`list-item ${activeItem === "/superadmin/account" ? "active" : ""}`}
+              {/* <li className={`list-item ${activeItem === "/superadmin/account" ? "active" : ""}`} 
                 onClick={() => handleItemClick("/admin/account")}>
                 <Link to="/superadmin/account" className="list-item">
                   <IconMapper className="ImageIcons" iconName="LogoMini" />

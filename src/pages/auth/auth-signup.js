@@ -17,6 +17,7 @@ export default function Signup() {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -58,6 +59,7 @@ export default function Signup() {
     if (formData.aadharCard)
       formDataToSend.append("aadharCard", formData.aadharCard);
     if (formData.panCard) formDataToSend.append("panCard", formData.panCard);
+    setLoading(true);
     try {
      await registerUser(formDataToSend);
       toast.success("Signup successful! Your account has been panding!");
@@ -67,6 +69,8 @@ export default function Signup() {
         "Error during signup:",
         error.response?.data || error.message
       );
+    } finally {
+      setLoading(false); // Set loading to false
     }
   };
 
@@ -231,8 +235,20 @@ export default function Signup() {
                   </div>
 
                   <div className="d-grid">
-                    <button className="btn btn-primary" type="submit">
-                      Register
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                      disabled={loading} // Disable button when loading
+                    >
+                      {loading ? (
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      ) : (
+                        "Register"
+                      )}
                     </button>
                   </div>
                   <div className="col-12 text-center mt-3">

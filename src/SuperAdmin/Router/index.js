@@ -17,6 +17,8 @@ import GetAllBusinessCategory from '../page/AddCategoryBusniess/GetAllBusinessCa
 import GetallPaymet from '../page/PaymentDetails/GetallPaymet'
 import GetAllPaymentUser from '../page/PaymentDetails/getPaymentUser'
 import AddMenualIcome from '../page/AddMenualIcome/AddMenualIcome'
+import AddProfiteIncome from '../page/AddProfiteIcomePage/ProfiteIncomeAll'
+
 
 
 const SuperAdminRouting = () => {
@@ -51,6 +53,8 @@ const SuperAdminRouting = () => {
         <Route path="GetallPaymet" element={<GetallPaymet />} />
         <Route path="GetallPaymet/:userId" element={<GetAllPaymentUser/>} />  
         <Route path="addincome" element={<AddMenualIcome/>} />   
+        <Route path="profiteicome" element={<AddProfiteIncome/>} />   
+
         <Route
           path="/WithdrawalRequest"
           element={

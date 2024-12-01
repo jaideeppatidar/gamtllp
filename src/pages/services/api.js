@@ -363,3 +363,41 @@ export const getProfiteById = async (userId) => {
   const response = await API.get(`${API_BASE_URL}/profite/${userId}`);
   return response.data;
 };
+
+
+
+export const getAllProfiteIncome = async () => {
+  const response = await API.get(`${API_BASE_URL}/profite`);
+  return response.data;
+};
+
+
+export const EditprofitIncome = async (userId,formData) => {
+  try {
+    const response = await API.put(`${API_BASE_URL}/profite/${userId}`, formData, {
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const AddProfiteIncome = async (formData) => {
+  try {
+    const response = await API.post(`${API_BASE_URL}/profite`, formData, {
+    
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const deleteProfiteIncome = async (userId) => {
+  try {
+    const response = await API.delete(`${API_BASE_URL}/profite/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    toast.error(error.response?.data?.message || "Error deleting user");
+    throw error;
+  }
+};

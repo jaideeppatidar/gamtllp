@@ -12,7 +12,7 @@ import { getAllUserInSuperadmin,deleteUser, approveUser } from "../../../../page
 import { Link } from "react-router-dom";
 
 const AllEmployee = () => {
-  const [approvalStatus, setApprovalStatus] = useState({});
+  // const [approvalStatus, setApprovalStatus] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,11 +28,11 @@ const AllEmployee = () => {
       const data = await getAllUserInSuperadmin();
       const users = Array.isArray(data.users) ? data.users : [];
       setFilteredDocuments(users);
-            const newApprovalStatus = {};
-      users.forEach(user => {
-        newApprovalStatus[user.userId] = user.isApproved;
-      });
-      setApprovalStatus(newApprovalStatus);
+      //       const newApprovalStatus = {};
+      // users.forEach(user => {
+      //   newApprovalStatus[user.userId] = user.isApproved;
+      // });
+      // setApprovalStatus(newApprovalStatus);
     } catch (error) {
       console.error("Error fetching users:", error);
     } finally {
@@ -116,25 +116,25 @@ const AllEmployee = () => {
       toast.error("Failed to delete selected documents");
     }
   };
-  const handleApprove = async (id) => {
-    try {
-      await approveUser(id);
-      setApprovalStatus(prev => ({
-        ...prev,
-        [id]: true
-      }));
+  // const handleApprove = async (id) => {
+  //   try {
+  //     await approveUser(id);
+  //     setApprovalStatus(prev => ({
+  //       ...prev,
+  //       [id]: true
+  //     }));
       
-      setFilteredDocuments(prev =>
-        prev.map(doc =>
-          doc.userId === id ? { ...doc, isApproved: true } : doc
-        )
-      );
-      toast.success("User approved successfully");
-    } catch (error) {
-      console.error("Error approving user:", error);
-      toast.error("Failed to approve user");
-    }
-  };
+  //     setFilteredDocuments(prev =>
+  //       prev.map(doc =>
+  //         doc.userId === id ? { ...doc, isApproved: true } : doc
+  //       )
+  //     );
+  //     toast.success("User approved successfully");
+  //   } catch (error) {
+  //     console.error("Error approving user:", error);
+  //     toast.error("Failed to approve user");
+  //   }
+  // };
 
 
   const handleOpenConfirmationModal = (id) => {
@@ -198,7 +198,7 @@ const AllEmployee = () => {
                   <th>Mobile</th>
                   <th>Address</th>
                   <th>Actions</th>
-                  <th>Approval Status</th>
+                  {/* <th>Approval Status</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -234,7 +234,7 @@ const AllEmployee = () => {
                         
                       </div>
                     </td>
-                    <td data-label="Approval Status">
+                    {/* <td data-label="Approval Status">
                       <div className="d-flex gap-2 justify-content-center align-items-center">
                       {approvalStatus[doc.userId] ? "Approved" : "Pending"}
                       {!approvalStatus[doc.userId] && (
@@ -248,7 +248,7 @@ const AllEmployee = () => {
                         
                         )}
                         </div>
-                    </td>
+                    </td> */}
 
                   </tr>
                 ))}

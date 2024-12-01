@@ -133,6 +133,7 @@ const AdminTimesheet = () => {
                   <th>UserName</th>
                   <th>Title</th>
                   <th>Income</th>
+                  <th>Percentage</th>
                   <th>Booking Date</th>
                   <th>Payment Status</th>
                 </tr>
@@ -151,6 +152,8 @@ const AdminTimesheet = () => {
 
                     <td data-label="Title">{timesheet.title}</td>
                     <td data-label="Income">{timesheet.income}</td>
+                    <td data-label="Income">{timesheet.Persantage}</td>
+
                     <td data-label="Booking Date">{timesheet.bookingDate}</td>
                     <td data-label="Payment Status">
                       <div className="d-flex gap-2 ">

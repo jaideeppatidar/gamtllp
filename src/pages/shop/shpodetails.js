@@ -217,9 +217,9 @@ export default function Comingsoon(){
                             </div>
                             <div className="title-heading text-center my-auto">
                                 <h1 className="title-dark text-white mt-2 mb-4 coming-soon">We are coming soon...</h1>
-                                <p className="text-white-50 para-desc para-dark mx-auto">A great plateform to buy, sell and rent your  commisions.</p>
+                                {/* <p className="text-white-50 para-desc para-dark mx-auto">A great plateform to buy, sell and rent your  commisions.</p> */}
                             
-                                <div id="countdown">
+                                {/* <div id="countdown">
                                     <ul className="count-down list-unstyled">
                                         <li id="days" className="count-number list-inline-item m-2">{time.days}<p className="count-head">Days</p></li>
                                         <li id="hours" className="count-number list-inline-item m-2 m-2"> {time.hours}
@@ -233,7 +233,7 @@ export default function Comingsoon(){
                                         </li>
                                         <li id="end" className="h1"></li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="text-center">
                                 {/* <p className="mb-0 text-muted">© {new Date().getFullYear()} GAMTLLP. Design & Develop with <i className="mdi mdi-heart text-danger"></i> by <Link to="https://shreethemes.in/" target="_blank" className="text-reset">Shreethemes</Link>.</p> */}

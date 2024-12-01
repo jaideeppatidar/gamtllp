@@ -35,7 +35,7 @@ const AddDocumentPopup = ({ open, onClose, product ,fetchDocuments }) => {
         ProductName: product.ProductName || "",
         Description: product.Description || "",
         Income: product.Income || "",
-        image: product.image || '',
+        image: null,
         Persantage: product.Persantage || "",
         Months: product.Months || "",
       });
@@ -44,7 +44,7 @@ const AddDocumentPopup = ({ open, onClose, product ,fetchDocuments }) => {
         ProductName: "",
         Description: "",
         Income: "",
-        image: '',
+        image: null,
         Persantage: "",
         Months: "",
        
