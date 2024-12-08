@@ -10,6 +10,8 @@ import Certificate1 from "../assect/images/Certificate/page1.png";
 import Certificate2 from "../assect/images/Certificate/page2.png";
 import Certificate3 from "../assect/images/Certificate/page3.png";
 import PanCard from "../assect/images/Certificate/pa.jpeg";
+import Chart from "../assect/images/Certificate/comeition.jpg";
+
 
 
 
@@ -204,6 +206,21 @@ export default function AboutUs() {
             <div class="col-12 text-center border border-dark rounded">
               <img
                 src={PanCard}
+                alt="Right Decoration"
+                class="img-fluid"
+                style={{ height: "auto" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="container mt-100 mt-60">
+          <div class="row align-items-center">
+           
+
+            <div class="col-12 text-center border border-dark rounded">
+              <img
+                src={Chart}
                 alt="Right Decoration"
                 class="img-fluid"
                 style={{ height: "auto" }}

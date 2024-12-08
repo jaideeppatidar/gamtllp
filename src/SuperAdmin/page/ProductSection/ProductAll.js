@@ -9,6 +9,8 @@ import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 const ITEMS_PER_PAGE = 6;
 const IMAGE_BASE_URL = "https://api.gamtllp.com/";
+// const IMAGE_BASE_URL = " http://localhost:7070/";
+
 
 const ALLProducts = () => {
   const [documentsData, setDocumentsData] = useState([]);

@@ -3,11 +3,12 @@ import { ToastContainer } from "react-toastify";
 import Checkbox from "@mui/material/Checkbox";
 import TablePagination from "@mui/material/TablePagination";
 import CommonHeader from "../../superadmincompo/CommonHeader/index";
+import Modal from "@mui/material/Modal";
 import { useParams } from "react-router-dom";
 
 import { getPaymentUserId } from "../../../pages/services/api";
-const IMAGE_BASE_URL = "https://api.gamtllp.com/";
-
+const IMAGE_BASE_URL = "https://api.gamtllp.com/"; 
+// const IMAGE_BASE_URL = " http://localhost:7070/";
 const ITEMS_PER_PAGE = 6;
 
 const GetPaymentDetailsUser = () => {
@@ -18,37 +19,31 @@ const GetPaymentDetailsUser = () => {
   const [rowsPerPage, setRowsPerPage] = useState(ITEMS_PER_PAGE);
   const [loading, setLoading] = useState(true);
   const [selectedPayment, setselectedPayment] = useState([]);
-console.log(paymentData)
-const fetchPayment = async () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+
+  const fetchPayment = async () => {
     setLoading(true);
     try {
-      const data = await getPaymentUserId(userId); // Fetching data from the API
-      console.log("Raw Data from API:", data);
-  
-      // Filter and map the data to extract user-specific data
+      const data = await getPaymentUserId(userId);
       const userSpecificData = data
-        ?.filter((item) => item.userId === userId) // Filter for matching userId
+        ?.filter((item) => item.userId === userId)
         .map((item) => ({
           ...item,
-          isApproved: item.status === "approved", // Add `isApproved` field based on status
+          isApproved: item.status === "approved",
         }));
-  
-      // Update state with the processed data
       setpaymentData(userSpecificData || []);
-      console.log("Filtered and Mapped Data:", userSpecificData);
-  
     } catch (error) {
       console.error("Failed to fetch payment data:", error);
-      setpaymentData([]); // Clear data on error
+      setpaymentData([]);
     } finally {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchPayment();
   }, [userId]);
-  
 
   useEffect(() => {
     const newOffset = page * rowsPerPage;
@@ -87,25 +82,15 @@ const fetchPayment = async () => {
     }
   };
 
-//   const handleApprove = async (bookingId) => {
-//     try {
-//       await approvedPayment(bookingId);
+  const handleImageClick = (imageUrl) => {
+    setModalImage(imageUrl);
+    setOpenModal(true);
+  };
 
-//       // Update the local state immediately
-//       setpaymentData((prevData) =>
-//         prevData.map((timesheet) =>
-//           timesheet._id === bookingId
-//             ? { ...timesheet, isApproved: true, status: "approved" }
-//             : timesheet
-//         )
-//       );
-
-//       toast.success("Payment approved successfully");
-//     } catch (error) {
-//       console.error("Failed to approve payment:", error);
-//       toast.error("Failed to approve payment");
-//     }
-//   };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setModalImage("");
+  };
 
   return (
     <div>
@@ -140,7 +125,6 @@ const fetchPayment = async () => {
                   <th>date</th>
                   <th>amount</th>
                   <th>paymentscreensort</th>
-                  {/* <th>Action </th> */}
                 </tr>
               </thead>
               <tbody>
@@ -157,36 +141,24 @@ const fetchPayment = async () => {
                     <td data-label="date">{payment.date}</td>
                     <td data-label="amount">{payment.amount}</td>
                     <td data-label="paymentscreensort">
-                    <img
-                    src={`${IMAGE_BASE_URL}${payment.paymentscreensort}`}
-                    alt={ "paymentscreensort"}
-                    className="img-fluid"
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      objectFit: "cover", 
-                      borderRadius: "8px", 
-                    }}
-                  />
-</td>
-
-                    {/* <td data-label="Payment Status">
-                      <div className="d-flex gap-2 ">
-                        {payment.isApproved ? (
-                          <span className="text-success">Approved</span>
-                        ) : (
-                          <>
-                            <span className="text-warning">Pending</span>
-                            <button
-                              className="btn btn-primary btn-sm"
-                              onClick={() => handleApprove(payment.userId)}
-                            >
-                              Approve
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </td> */}
+                      <img
+                        src={`${IMAGE_BASE_URL}${payment.paymentscreensort}`}
+                        alt="paymentscreensort"
+                        className="img-fluid"
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          objectFit: "cover",
+                          borderRadius: "8px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() =>
+                          handleImageClick(
+                            `${IMAGE_BASE_URL}${payment.paymentscreensort}`
+                          )
+                        }
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -212,6 +184,35 @@ const fetchPayment = async () => {
         </div>
         <ToastContainer />
       </div>
+
+      {/* Modal for showing the image */}
+      <Modal open={openModal} onClose={handleCloseModal}>
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "white",
+            padding: "16px",
+            borderRadius: "8px",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            maxWidth: "50%",
+            maxHeight: "auto",
+          }}
+        >
+          <img
+            src={modalImage}
+            alt="Large View"
+            style={{
+              width: "50%",
+              height: "auto",
+              borderRadius: "8px",
+              height: "auto",
+            }}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };

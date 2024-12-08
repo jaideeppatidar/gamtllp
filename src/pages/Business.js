@@ -160,7 +160,7 @@ export const Business = () => {
                     }
                   </p>
                   <a
-                    href="/docs/silentpatner.pdf"
+                    href="/docs/Slide3.pdf"
                     target="_blank"
                     className="text-dark read-more"
                   >

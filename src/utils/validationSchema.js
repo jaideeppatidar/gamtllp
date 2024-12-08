@@ -87,6 +87,9 @@ export const AddIcomeValidation  = Yup.object().shape({
   productId: Yup.string().required("productId name is required"),
   income: Yup.string().required("income name is required"),
   userId: Yup.string().required("userId name is required"),
+  firstName: Yup.string().required("userId name is required"),
+  percentage: Yup.string().required("userId name is required"),
+
 });
 export const AddCategoryBusniess = Yup.object().shape({
   categoryName: Yup.string().required("Category name is required"),

@@ -182,6 +182,8 @@ const ALLProfiteIncome = () => {
                   </th>
                   <th>productId</th>
                   <th>UserID</th>
+                  <th>Name</th>
+                  <th>Percentage</th>
                   <th>Income</th>
                   <th>Action</th>
                 </tr>
@@ -197,6 +199,8 @@ const ALLProfiteIncome = () => {
                     </td>
                     <td data-label="productId">{document.productId}</td>
                     <td data-label="ProductName">{document.userId}</td>
+                    <td data-label="FirstName">{document.firstName}</td>
+                    <td data-label="Percentage">{document.percentage}</td>
                     <td data-label="Income">{document.income}</td>
                    
 

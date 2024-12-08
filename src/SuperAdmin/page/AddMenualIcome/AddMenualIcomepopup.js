@@ -17,6 +17,8 @@ const AddIncomePopup = ({ open, onClose, product, fetchDocuments }) => {
     productId: "",
     income: "",
     userId: "",
+    firstName:"", 
+    percentage:"",
   });
   const [errors, setErrors] = useState({});
 
@@ -26,6 +28,8 @@ const AddIncomePopup = ({ open, onClose, product, fetchDocuments }) => {
       productId: product?.productId || "",
       income: product?.income || "",
       userId: product?.userId || "",
+      firstName: product?.firstName || "", 
+    percentage: product?.percentage || "",
     });
     setErrors({});
   }, [product, open]);
@@ -88,6 +92,28 @@ const AddIncomePopup = ({ open, onClose, product, fetchDocuments }) => {
       <form onSubmit={handleSubmit}>
         <DialogTitle>{product ? "Edit Product" : "Add Income"}</DialogTitle>
         <DialogContent>
+        <TextField
+            fullWidth
+            margin="dense"
+            id="firstName"
+            name="firstName"
+            label="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            error={Boolean(errors.firstName)}
+            helperText={errors.firstName}
+          />
+          <TextField
+            fullWidth
+            margin="dense"
+            id="percentage"
+            name="percentage"
+            label="percentage"
+            value={formData.percentage}
+            onChange={handleChange}
+            error={Boolean(errors.percentage)}
+            helperText={errors.percentage}
+          />
           <TextField
             fullWidth
             margin="dense"
