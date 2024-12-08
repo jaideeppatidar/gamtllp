@@ -6,8 +6,8 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
-// const API_BASE_URL = "https://api.gamtllp.com/api";
-const API_BASE_URL = "http://localhost:7070/api";
+const API_BASE_URL = "https://api.gamtllp.com/api";
+// const API_BASE_URL = "http://localhost:7070/api";
 
 
 
