@@ -8,8 +8,7 @@ import debounce from "lodash/debounce";
 import { ToastContainer, toast } from "react-toastify";
 import ConfirmationModal from "../../../superadmincompo/ConfirmationModal/ConfirmationModal";
 import "react-toastify/dist/ReactToastify.css";
-import { getAllUserInSuperadmin,deleteUser, approveUser } from "../../../../pages/services/api";
-import { Link } from "react-router-dom";
+import { getAllUserInSuperadmin,deleteUser } from "../../../../pages/services/api";
 
 const AllEmployee = () => {
   // const [approvalStatus, setApprovalStatus] = useState({});

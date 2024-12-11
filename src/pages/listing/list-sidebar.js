@@ -4,7 +4,6 @@ import bg3 from "../../assect/images/bg/03.jpg";
 import { FiHome, FiHeart, FiCamera } from "../../assect/icons/vander";
 import { fetchProductData } from "../services/api";
 
-const IMAGE_BASE_URL = "https://api.gamtllp.com/";
 export default function ListSidebar() {
     const [productData, setProductData] = useState([]);
 
@@ -75,7 +74,7 @@ export default function ListSidebar() {
               <div className="card property border-0 shadow position-relative overflow-hidden rounded-3">
                 <div className="property-image position-relative overflow-hidden shadow">
                   <img
-                    src={`${IMAGE_BASE_URL}${item.image}`}
+                   src={`${process.env.REACT_APP_IMAGE_BASE_URL}${item.image}`}
                     alt={item.title || "Product Image"}
                     className="img-fluid"
                     style={{

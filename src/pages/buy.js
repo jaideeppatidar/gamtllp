@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import { deleteProductById, fetchBookingDataUserId } from "./services/api";
 import { toast } from "react-toastify";
 
-const IMAGE_BASE_URL = "https://api.gamtllp.com/";
-
 export default function Buy() {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const { userId } = useSelector((state) => state.auth.user);
@@ -69,7 +67,7 @@ export default function Buy() {
                 <div className="card property border-0 shadow position-relative overflow-hidden rounded-3">
                   <div className="property-image position-relative overflow-hidden shadow">
                     <img
-                      src={`${IMAGE_BASE_URL}${product.image}`}
+                      src={`${process.env.REACT_APP_IMAGE_BASE_URL}${product.image}`}
                       className="img-fluid"
                       alt={product.title}
                       style={{ height: "270px", width: "356px" }}

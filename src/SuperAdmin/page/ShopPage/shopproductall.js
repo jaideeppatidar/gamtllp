@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./ProfiteIncomeAll.css";
+import "./shopproductall.css";
 import Checkbox from "@mui/material/Checkbox";
 import TablePagination from "@mui/material/TablePagination";
 import CommonHeader from "../../superadmincompo/CommonHeader/index";
-import ProductProfit from "./ProfitePopup";
-import {   deleteProfiteIncome, getAllProfiteIncome } from "../../../pages/services/api";
+import ProductAdd from "./shopproductadd";
+import { getShopProduct, deleteShopProduct } from "../../../pages/services/api";
 import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 const ITEMS_PER_PAGE = 6;
 
-const ALLProfiteIncome = () => {
+
+
+const ALLProducts = () => {
   const [documentsData, setDocumentsData] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
   const [selectedDocuments, setSelectedDocuments] = useState([]);
@@ -27,9 +29,8 @@ const ALLProfiteIncome = () => {
   const fetchDocuments = async () => {
     setLoading(true);
     try {
-      const response = await getAllProfiteIncome();
-      console.log(response);
-      setDocumentsData(response);
+      const response = await getShopProduct();
+      setDocumentsData(response.Product);
     } catch (error) {
       console.error("Error fetching documents:", error);
     } finally {
@@ -43,7 +44,7 @@ const ALLProfiteIncome = () => {
 
   useEffect(() => {
     const filteredData = documentsData.filter((document) => {
-      const matchesSearch = document.productId.toLowerCase().includes(
+      const matchesSearch = document.ProductName.toLowerCase().includes(
         searchQuery.toLowerCase()
       );
       const matchesStatus = statusFilter
@@ -82,8 +83,8 @@ const ALLProfiteIncome = () => {
   const handleDelete = async () => {
     try {
       await Promise.all(
-        selectedDocuments.map(async (userId) => {
-          await deleteProfiteIncome(userId);
+        selectedDocuments.map(async (id) => {
+          await deleteShopProduct(id);
         })
       );
       fetchDocuments(); // Refresh list after deletion
@@ -116,8 +117,8 @@ const ALLProfiteIncome = () => {
     fetchDocuments();
   }
 
-  const handleOpenConfirmationModal = (userId) => {
-    setDocumentToDelete(userId);
+  const handleOpenConfirmationModal = (id) => {
+    setDocumentToDelete(id);
     setShowConfirmationModal(true);
   };
 
@@ -125,13 +126,13 @@ const ALLProfiteIncome = () => {
     setDocumentToDelete(null);
     setShowConfirmationModal(false);
   };
-  
+
   const handleConfirmDelete = async () => {
     if (documentToDelete) {
       try {
-        await deleteProfiteIncome(documentToDelete); 
-        fetchDocuments(); 
-        setShowConfirmationModal(false); 
+        await deleteShopProduct(documentToDelete); // Call the delete API
+        fetchDocuments(); // Refresh list after deletion
+        setShowConfirmationModal(false); // Close confirmation modal
       } catch (error) {
         console.error("Error deleting product:", error);
       } finally {
@@ -180,10 +181,11 @@ const ALLProfiteIncome = () => {
                     />
                   </th>
                   <th>productId</th>
-                  <th>UserID</th>
-                  <th>Name</th>
-                  <th>Percentage</th>
+                  <th>Product Name</th>
                   <th>Income</th>
+                  <th>Kilogram</th>
+                
+                  <th>image</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -197,13 +199,24 @@ const ALLProfiteIncome = () => {
                       />
                     </td>
                     <td data-label="productId">{document.productId}</td>
-                    <td data-label="ProductName">{document.userId}</td>
-                    <td data-label="FirstName">{document.firstName}</td>
-                    <td data-label="Percentage">{document.percentage}</td>
-                    <td data-label="Income">{document.income}</td>
-                   
+                    <td data-label="ProductName">{document.ProductName}</td>
+                    <td data-label="Income">{document.Income}</td>
+                    <td data-label="Persantage">{document.Kilogram}</td>
+                  
 
-                    
+                    <td data-label="image">
+                    <img
+                   src={`${process.env.REACT_APP_IMAGE_BASE_URL}${document.image}`}
+                    alt={ "Product Image"}
+                    className="img-fluid"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      objectFit: "cover", 
+                      borderRadius: "8px", 
+                    }}
+                  />
+                    </td>
                     <td data-label="Action">
                       <div className="AdminAction-DataButon">
                       <button
@@ -215,7 +228,7 @@ const ALLProfiteIncome = () => {
                         <button
                           className="AdminText-delete"
                           onClick={() =>
-                            handleOpenConfirmationModal(document.userId)
+                            handleOpenConfirmationModal(document.productId)
                           }
                         >
                           <IconMapper
@@ -250,7 +263,7 @@ const ALLProfiteIncome = () => {
           title="Delete Product"
           message="Are you sure you want to delete this Product?"
         />
-        <ProductProfit
+        <ProductAdd
         open={isPopupOpen}
         onClose={handleClosePopup}
         onSubmit={handleFormSubmit}
@@ -261,4 +274,4 @@ const ALLProfiteIncome = () => {
   );
 };
 
-export default ALLProfiteIncome;
+export default ALLProducts;

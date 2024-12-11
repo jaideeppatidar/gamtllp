@@ -6,8 +6,7 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
-const API_BASE_URL = "https://api.gamtllp.com/api";
-// const API_BASE_URL = "http://localhost:7070/api";
+
 
 
 
@@ -35,7 +34,7 @@ API.interceptors.response.use(
 );
 export const loginSuperAdmin = async (email, password) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/login`, {
+    const response = await API.post(`/login`, {
       email,
       password,
     });
@@ -47,7 +46,7 @@ export const loginSuperAdmin = async (email, password) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/employee/login`, {
+    const response = await API.post(`/employee/login`, {
       email,
       password,
     });
@@ -58,7 +57,7 @@ export const loginUser = async (email, password) => {
 };
 export const approveUser = async (userId) => {
   try {
-    const response = await API.put(`${API_BASE_URL}/approveUser/${userId}`);
+    const response = await API.put(`/approveUser/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error approving user:", error);
@@ -67,7 +66,7 @@ export const approveUser = async (userId) => {
 };
 export const approvedPayment = async (userId) => {
   try {
-    const response = await API.put(`${API_BASE_URL}/approve/${userId}`);
+    const response = await API.put(`/approve/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error approving user:", error);
@@ -79,7 +78,7 @@ export const approvedPayment = async (userId) => {
 //contact from 
 export const contactFrom = async (data) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/Contact`, data, {
+    const response = await axios.post(`/Contact`, data, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -92,7 +91,7 @@ export const contactFrom = async (data) => {
 export const registerUser = async (formData) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/registeruser`,
+      `/registeruser`,
       formData,
       {
         headers: {
@@ -112,7 +111,7 @@ export const verifyOTP = async (userId, otp) => {
 
   try {
     // Use `userId` in the URL path
-    const response = await API.post(`${API_BASE_URL}/verifyOTP/${userId}`, {
+    const response = await API.post(`/verifyOTP/${userId}`, {
       otp: String(otp),
     });
     return response.data;
@@ -123,7 +122,7 @@ export const verifyOTP = async (userId, otp) => {
 export const Withdrawal = async (formData) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/withdrawal`,
+      `/withdrawal`,
       formData,
       {}
     );
@@ -135,7 +134,7 @@ export const Withdrawal = async (formData) => {
 
 export const fetchProductData = async () => {
   try {
-    const response = await API.get(`${API_BASE_URL}/product`);
+    const response = await API.get(`/product`);
     return response.data;
   } catch (error) {
     console.error("Error fetching dialogue sessions:", error);
@@ -145,7 +144,7 @@ export const fetchProductData = async () => {
 export const fetchProductId = async (productId) => {
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/products/${productId}`
+      `/products/${productId}`
     );
     return response.data; // Return the product data from the API
   } catch (error) {
@@ -157,7 +156,7 @@ export const fetchProductId = async (productId) => {
 export const ProductBookingApi = async (bookingData) => {
   try {
     // Send a POST request to the API to create the booking
-    const response = await API.post(`${API_BASE_URL}/booking`,bookingData);
+    const response = await API.post(`/booking`,bookingData);
     return response.data; 
   } catch (error) {
     // Handle errors gracefully
@@ -167,7 +166,7 @@ export const ProductBookingApi = async (bookingData) => {
 };
 export const fetchBookingDataUserId = async (userId) => {
   try {
-    const response = await API.get(`${API_BASE_URL}/bookings/${userId}`);
+    const response = await API.get(`/bookings/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -176,7 +175,7 @@ export const fetchBookingDataUserId = async (userId) => {
 };
 export const deleteProductById = async (productId) => {
   try {
-    const response = await API.delete(`${API_BASE_URL}/booking/${productId}`, {});
+    const response = await API.delete(`/booking/${productId}`, {});
     return response.data;
   } catch (error) {
     throw error;
@@ -185,13 +184,13 @@ export const deleteProductById = async (productId) => {
 
 //Fetch All User
 export const getAllUserInSuperadmin = async () => {
-    const response = await API.get(`${API_BASE_URL}/alluser`);
+    const response = await API.get(`/alluser`);
     return response.data;
 };
 
 export const deleteUser = async (userId) => {
   try {
-    const response = await API.delete(`${API_BASE_URL}/deleteuser/${userId}`);
+    const response = await API.delete(`/deleteuser/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -204,7 +203,7 @@ export const deleteUser = async (userId) => {
 
 export const AddBusinessCategories = async (formData) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/BusniessCategory`, formData, {
+    const response = await API.post(`/BusniessCategory`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -216,20 +215,20 @@ export const AddBusinessCategories = async (formData) => {
 };
 
 export const getAllProducts = async () => {
-  const response = await API.get(`${API_BASE_URL}/product`);
+  const response = await API.get(`/product`);
   return response.data;
 };
 
 // add category
 
 export const getAllBusinessCategories = async () => {
-  const response = await API.get(`${API_BASE_URL}/business-categories`);
+  const response = await API.get(`/business-categories`);
   return response.data;
 };
 
 export const DeleteCategoryBusiness = async (id) => {
   try {
-    const response = await API.delete(`${API_BASE_URL}/businessCategory/${id}`);
+    const response = await API.delete(`/businessCategory/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -240,7 +239,7 @@ export const DeleteCategoryBusiness = async (id) => {
 
 export const AddProduct = async (formData) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/product`, formData, {
+    const response = await API.post(`/product`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -252,7 +251,7 @@ export const AddProduct = async (formData) => {
 };
 export const EditProduct = async (productId,formData) => {
   try {
-    const response = await API.put(`${API_BASE_URL}/product/${productId}`, formData, {
+    const response = await API.put(`/product/${productId}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -265,7 +264,7 @@ export const EditProduct = async (productId,formData) => {
 
 export const deleteProduct = async (productId) => {
   try {
-    const response = await API.delete(`${API_BASE_URL}/product/${productId}`);
+    const response = await API.delete(`/product/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -277,24 +276,24 @@ export const deleteProduct = async (productId) => {
 //get all booking product user
 
 export const getAllBookingProduct = async () => {
-  const response = await API.get(`${API_BASE_URL}/allbooking`);
+  const response = await API.get(`/allbooking`);
   return response.data;
 };
 export const getProductUserId = async (userId) => {
-  const response = await API.get(`${API_BASE_URL}/bookings/${userId}`);
+  const response = await API.get(`/bookings/${userId}`);
   return response.data;
 };
 
 //  get widthdrwa rewuest
 export const GetWithdrawal = async () => {
-  const response = await API.get(`${API_BASE_URL}/withdrawalRequests`);
+  const response = await API.get(`/withdrawalRequests`);
   return response.data.data;
 };
 
 // payment request send 
 export const AddPaymentDetails = async (formData) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/payment-details`, formData, {
+    const response = await API.post(`/payment-details`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -306,30 +305,30 @@ export const AddPaymentDetails = async (formData) => {
 };
 
 export const GetallPaymets = async () => {
-  const response = await API.get(`${API_BASE_URL}/getAllPaymentDetails`);
+  const response = await API.get(`/getAllPaymentDetails`);
   return response.data;
 };
 
 
 export const getPaymentUserId = async (userId) => {
-  const response = await API.get(`${API_BASE_URL}/payments/${userId}`);
+  const response = await API.get(`/payments/${userId}`);
   return response.data.PaymentDetails;
 };
 
 ////
 
 export const getIncomeById = async (userId) => {
-  const response = await API.get(`${API_BASE_URL}/addincome/${userId}`);
+  const response = await API.get(`/addincome/${userId}`);
   return response.data;
 };
 export const getAllIncome = async () => {
-  const response = await API.get(`${API_BASE_URL}/addincome`);
+  const response = await API.get(`/addincome`);
   return response.data;
 };
 
 export const AddIncomeMenual = async (formData) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/addincome`, formData, {
+    const response = await API.post(`/addincome`, formData, {
     
     });
     return response.data;
@@ -340,7 +339,7 @@ export const AddIncomeMenual = async (formData) => {
 
 export const EditIncomeMenual = async (userId,formData) => {
   try {
-    const response = await API.put(`${API_BASE_URL}/addincome/${userId}`, formData, {
+    const response = await API.put(`/addincome/${userId}`, formData, {
     });
     return response.data;
   } catch (error) {
@@ -349,7 +348,7 @@ export const EditIncomeMenual = async (userId,formData) => {
 };
 export const deleteIcome = async (userId) => {
   try {
-    const response = await API.delete(`${API_BASE_URL}/addincome/${userId}`);
+    const response = await API.delete(`/addincome/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -360,21 +359,21 @@ export const deleteIcome = async (userId) => {
 
 ///      kjgjhbhhhvhgftuvhvuycu
 export const getProfiteById = async (userId) => {
-  const response = await API.get(`${API_BASE_URL}/profite/${userId}`);
+  const response = await API.get(`/profite/${userId}`);
   return response.data;
 };
 
 
 
 export const getAllProfiteIncome = async () => {
-  const response = await API.get(`${API_BASE_URL}/profite`);
+  const response = await API.get(`/profite`);
   return response.data;
 };
 
 
 export const EditprofitIncome = async (userId,formData) => {
   try {
-    const response = await API.put(`${API_BASE_URL}/profite/${userId}`, formData, {
+    const response = await API.put(`/profite/${userId}`, formData, {
     });
     return response.data;
   } catch (error) {
@@ -383,7 +382,7 @@ export const EditprofitIncome = async (userId,formData) => {
 };
 export const AddProfiteIncome = async (formData) => {
   try {
-    const response = await API.post(`${API_BASE_URL}/profite`, formData, {
+    const response = await API.post(`/profite`, formData, {
     
     });
     return response.data;
@@ -393,7 +392,53 @@ export const AddProfiteIncome = async (formData) => {
 };
 export const deleteProfiteIncome = async (userId) => {
   try {
-    const response = await API.delete(`${API_BASE_URL}/profite/${userId}`);
+    const response = await API.delete(`/profite/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    toast.error(error.response?.data?.message || "Error deleting user");
+    throw error;
+  }
+};
+
+
+
+/////////////////////================================================================================================================================
+
+export const AddShopProduct = async (formData) => {
+  try {
+    const response = await API.post(`/shopproduct`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const EditShopProduct = async (productId,formData) => {
+  try {
+    const response = await API.put(`/shopproduct/${productId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getShopProduct = async () => {
+  const response = await API.get(`/shopproduct`);
+  return response.data;
+};
+
+
+export const deleteShopProduct = async (productId) => {
+  try {
+    const response = await API.delete(`/shopproduct/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting user:", error);

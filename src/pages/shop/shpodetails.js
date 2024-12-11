@@ -179,7 +179,7 @@ import bg3 from "../../assect/images/bg/03.jpg"
 import logo from "../../assect/images/logo.png";
 
 export default function Comingsoon(){
-    const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [ setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
         document.documentElement.setAttribute("dir", "ltr");

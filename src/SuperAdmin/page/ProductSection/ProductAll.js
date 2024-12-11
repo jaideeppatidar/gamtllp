@@ -8,8 +8,7 @@ import { getAllProducts, deleteProduct } from "../../../pages/services/api";
 import IconMapper from "../../superadmincompo/IconMapper/IconMapper";
 import ConfirmationModal from "../../superadmincompo/ConfirmationModal/ConfirmationModal";
 const ITEMS_PER_PAGE = 6;
-const IMAGE_BASE_URL = "https://api.gamtllp.com/";
-// const IMAGE_BASE_URL = " http://localhost:7070/";
+
 
 
 const ALLProducts = () => {
@@ -207,7 +206,8 @@ const ALLProducts = () => {
 
                     <td data-label="image">
                     <img
-                    src={`${IMAGE_BASE_URL}${document.image}`}
+                     src={`${process.env.REACT_APP_IMAGE_BASE_URL}${document.image}`}
+
                     alt={ "Product Image"}
                     className="img-fluid"
                     style={{

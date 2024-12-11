@@ -18,7 +18,7 @@ import GetallPaymet from '../page/PaymentDetails/GetallPaymet'
 import GetAllPaymentUser from '../page/PaymentDetails/getPaymentUser'
 import AddMenualIcome from '../page/AddMenualIcome/AddMenualIcome'
 import AddProfiteIncome from '../page/AddProfiteIcomePage/ProfiteIncomeAll'
-
+import ShopProduct from '../page/ShopPage/shopproductall'
 
 
 const SuperAdminRouting = () => {
@@ -54,6 +54,9 @@ const SuperAdminRouting = () => {
         <Route path="GetallPaymet/:userId" element={<GetAllPaymentUser/>} />  
         <Route path="addincome" element={<AddMenualIcome/>} />   
         <Route path="profiteicome" element={<AddProfiteIncome/>} />   
+        <Route path="shopProduct" element={<ShopProduct/>} />   
+
+
 
         <Route
           path="/WithdrawalRequest"

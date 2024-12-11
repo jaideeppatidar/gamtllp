@@ -250,8 +250,10 @@ function App() {
         {/* Special Pages */}
         {/* <Route path="/comingsoon" element={<Comingsoon />} /> */}
         {/* <Route path="/maintenance" element={<Maintenance />} /> */}
-        <Route path="/error" element={<Signup />} />
-        <Route path="*" element={<Signup />} />
+        {/* <Route path="/error" element={<Signup />} />
+        <Route path="*" element={<Signup />} /> */}
+         <Route path="/error" element={<Error/>}/>
+       <Route path="*" element={<Error/>}/>
        
       </Routes>
       <Footer/>

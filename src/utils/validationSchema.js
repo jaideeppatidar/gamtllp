@@ -1,51 +1,55 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const signupValidationSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, 'First Name is too short')
-    .max(50, 'First Name is too long')
-    .required('First Name is required'),
-  
+    .min(2, "First Name is too short")
+    .max(50, "First Name is too long")
+    .required("First Name is required"),
+
   email: Yup.string()
-    .email('Invalid email format')
-    .required('Email is required'),
+    .email("Invalid email format")
+    .required("Email is required"),
 
   password: Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('Password is required'),
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 
   mobile: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Mobile number must be exactly 10 digits')
-    .required('Mobile number is required'),
+    .matches(/^[0-9]{10}$/, "Mobile number must be exactly 10 digits")
+    .required("Mobile number is required"),
 
   address: Yup.string()
-    .min(5, 'Address is too short')
-    .required('Address is required'),
+    .min(5, "Address is too short")
+    .required("Address is required"),
 
   aadharCard: Yup.mixed()
-    .required('Aadhaar Card is required')
+    .required("Aadhaar Card is required")
     .test(
-      'fileSize',
-      'File size is too large, should be less than 5MB',
-      value => value && value.size <= 5242880  // 5MB
+      "fileSize",
+      "File size is too large, should be less than 5MB",
+      (value) => value && value.size <= 5242880 // 5MB
     )
     .test(
-      'fileType',
-      'Only PDF and image files are accepted',
-      value => value && ['application/pdf', 'image/jpeg', 'image/png'].includes(value.type)
+      "fileType",
+      "Only PDF and image files are accepted",
+      (value) =>
+        value &&
+        ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
     ),
 
   panCard: Yup.mixed()
-    .required('PAN Card is required')
+    .required("PAN Card is required")
     .test(
-      'fileSize',
-      'File size is too large, should be less than 5MB',
-      value => value && value.size <= 5242880  // 5MB
+      "fileSize",
+      "File size is too large, should be less than 5MB",
+      (value) => value && value.size <= 5242880 // 5MB
     )
     .test(
-      'fileType',
-      'Only PDF and image files are accepted',
-      value => value && ['application/pdf', 'image/jpeg', 'image/png'].includes(value.type)
+      "fileType",
+      "Only PDF and image files are accepted",
+      (value) =>
+        value &&
+        ["application/pdf", "image/jpeg", "image/png"].includes(value.type)
     ),
 });
 export const AssetsValidation = Yup.object().shape({
@@ -65,8 +69,7 @@ export const MeetingShedulValidation = Yup.object().shape({
   reviewDate: Yup.date().required("Review Date is required"),
   commentsAndNotes: Yup.string().required("Comments are required"),
   nextMeetingDate: Yup.date().required("Next Meeting Date is required"),
-  meetingURL: Yup.string()
-    .required("Meeting URL is required")
+  meetingURL: Yup.string().required("Meeting URL is required"),
 });
 export const AddDocumentValidation = Yup.object().shape({
   ProductName: Yup.string().required("ProductName name is required"),
@@ -80,20 +83,34 @@ export const AddDocumentValidation = Yup.object().shape({
       const validTypes = ["application/pdf", "image/jpeg", "image/png"];
       return value && validTypes.includes(value.type);
     }),
-  
 });
 
-export const AddIcomeValidation  = Yup.object().shape({
+export const ShopProductValidation = Yup.object().shape({
+  ProductName: Yup.string().required("ProductName name is required"),
+  Description: Yup.string().required("Description name is required"),
+
+  Income: Yup.date().required("Income is required").nullable(),
+  Kilogram: Yup.string().required("Kilogram is required"),
+  image: Yup.mixed()
+    .required("A file is required")
+    .test("fileType", "Only PDF, JPEG, and PNG files are allowed", (value) => {
+      const validTypes = ["application/pdf", "image/jpeg", "image/png"];
+      return value && validTypes.includes(value.type);
+    }),
+});
+
+export const AddIcomeValidation = Yup.object().shape({
   productId: Yup.string().required("productId name is required"),
   income: Yup.string().required("income name is required"),
   userId: Yup.string().required("userId name is required"),
   firstName: Yup.string().required("userId name is required"),
   percentage: Yup.string().required("userId name is required"),
-
 });
 export const AddCategoryBusniess = Yup.object().shape({
   categoryName: Yup.string().required("Category name is required"),
-  categoryDescription: Yup.string().required("Category description is required"),
+  categoryDescription: Yup.string().required(
+    "Category description is required"
+  ),
   categoryImage: Yup.mixed()
     .required("A file is required")
     .test("fileType", "Only image files are allowed", (value) => {
@@ -101,7 +118,9 @@ export const AddCategoryBusniess = Yup.object().shape({
     }),
 });
 export const otpValidationSchema = Yup.object().shape({
-  otp: Yup.string().length(6, 'OTP must be 6 digits').required('OTP is required'),
+  otp: Yup.string()
+    .length(6, "OTP must be 6 digits")
+    .required("OTP is required"),
 });
 export const PaymentValidation = Yup.object().shape({
   amount: Yup.string().required("amount  is required"),

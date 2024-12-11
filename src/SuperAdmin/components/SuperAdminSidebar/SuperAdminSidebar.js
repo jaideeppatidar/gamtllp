@@ -123,6 +123,18 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   {isOpen && <span className="list-item-text"> All Product</span>}
                 </Link>
               </li>
+
+              <li
+                className={`list-item ${activeItem === "/superadmin/shopProduct" ? "active" : ""}`}
+                onClick={() => handleItemClick("/superadmin/shopProduct")}
+              >
+                <Link to="/superadmin/shopProduct" className="list-item">
+                  <IconMapper className="ImageIcons" iconName="MyDocuments" />
+                  {isOpen && <span className="list-item-text"> All Shop Product</span>}
+                </Link>
+              </li>
+
+
               <li
                 className={`list-item ${activeItem === "/superadmin/bookingdata" ? "active" : ""}`}
                 onClick={() => handleItemClick("/superadmin/bookingdata")}

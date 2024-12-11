@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/authSlice/authSlice";
 
 export default function Navbar({ navClass, logolight, menuClass }) {
-  const [scroll, setScroll] = useState(false);
+  const [scroll] = useState(false);
   const [isMenu, setisMenu] = useState(false);
   const [profileModal, setProfileModal] = useState(false);
   const navigate = useNavigate();

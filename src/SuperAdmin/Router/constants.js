@@ -8,5 +8,6 @@ export const ROUTES = {
   ADMIN_EXPENSES: 'expenses',
   ADD_ADMIN_EMPLOYEE: 'addemployee',
   All_Empolyee: 'allEmployee',
+  SHOP_PRODUCT:'shopProduct',
 
 };

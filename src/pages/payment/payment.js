@@ -11,7 +11,7 @@ export default function BankDetails() {
   const [errors, setErrors] = useState({});
   const { userId, firstName } = useSelector((state) => state.auth.user);
   const location = useLocation();
-  const { productName, income } = location.state || {};
+  const {  income } = location.state || {};
   const [formData, setFormData] = useState({
     paymentscreensort: null,
     date: "",

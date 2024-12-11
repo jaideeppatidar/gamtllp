@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bg2 from "../../assect/images/bg/03.jpg"
-import { propertyData } from "../../data/data";
 import {FiHome, FiHeart, FiCamera} from "../../assect/icons/vander"
+import {  getShopProduct } from "../services/api";
 
-export default function GridSidebar(){
+export default function ShopPageGAMTLLP(){
+    const [productData, setProductData] = useState([]);
+
+    useEffect(() => {
+      const getProductData = async () => {
+        try {
+          const data = await getShopProduct();
+          setProductData(data.Product); 
+        } catch (error) {
+          console.error("Error setting product data:", error);
+        }
+      };
+      getProductData();
+    }, []);
     return(
         <>
       <section
@@ -84,7 +97,7 @@ export default function GridSidebar(){
 
                     <div className="col-lg-8 col-md-6 col-12">
                         <div className="row g-4">
-                            {propertyData.slice(0,8).map((item, index) =>{
+                            {productData.map((item, index) =>{
                                 return(
                                 <div className="col-lg-6 col-12" key={index}>
                                     <div className="card property border-0 shadow position-relative overflow-hidden rounded-3">
@@ -97,13 +110,13 @@ export default function GridSidebar(){
                                             </ul>
                                         </div>
                                         <div className="card-body content p-4">
-                                            <Link to={`/property-detail/${item.id}`} className="title fs-5 text-dark fw-medium">{item.title}</Link>
+                                            <Link to={`/property-detail/${item.productId}`} className="title fs-5 text-dark fw-medium">{item.ProductName}</Link>
 
                                             
                                             <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
                                                 <li className="list-inline-item mb-0">
                                                     <span className="text-muted">Price</span>
-                                                    <p className="fw-medium mb-0">$5000</p>
+                                                    <p className="fw-medium mb-0">{item.Income}</p>
                                                 </li>
                                                 <li className="list-inline-item mb-0 text-muted">
                                                     <span className="text-muted">Rating</span>

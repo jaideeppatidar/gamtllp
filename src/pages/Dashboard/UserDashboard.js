@@ -203,7 +203,7 @@ const Dashboard = () => {
             <tr key={product._id}>
               <td>
                 <img
-                  src={`https://api.gamtllp.com/${product.image}`}
+                src={`${process.env.REACT_APP_IMAGE_BASE_URL}${product.image}`}
                   alt={product.title}
                   style={{ width: "50px", height: "auto" }}
                 />

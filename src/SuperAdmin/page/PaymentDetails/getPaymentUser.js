@@ -7,8 +7,6 @@ import Modal from "@mui/material/Modal";
 import { useParams } from "react-router-dom";
 
 import { getPaymentUserId } from "../../../pages/services/api";
-const IMAGE_BASE_URL = "https://api.gamtllp.com/"; 
-// const IMAGE_BASE_URL = " http://localhost:7070/";
 const ITEMS_PER_PAGE = 6;
 
 const GetPaymentDetailsUser = () => {
@@ -142,7 +140,8 @@ const GetPaymentDetailsUser = () => {
                     <td data-label="amount">{payment.amount}</td>
                     <td data-label="paymentscreensort">
                       <img
-                        src={`${IMAGE_BASE_URL}${payment.paymentscreensort}`}
+                        src={`${process.env.REACT_APP_IMAGE_BASE_URL}${payment.paymentscreensort}`}
+
                         alt="paymentscreensort"
                         className="img-fluid"
                         style={{
@@ -154,7 +153,7 @@ const GetPaymentDetailsUser = () => {
                         }}
                         onClick={() =>
                           handleImageClick(
-                            `${IMAGE_BASE_URL}${payment.paymentscreensort}`
+                            `${process.env.REACT_APP_IMAGE_BASE_URL}${payment.paymentscreensort}`
                           )
                         }
                       />
